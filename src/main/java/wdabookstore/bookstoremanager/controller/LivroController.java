@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/livros")
 public class LivroController {
-    @ApiOperation(value = "ListaLivros")
+    @ApiOperation(value = "Listar Livros")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Livros retornados com sucesso!")
     })
