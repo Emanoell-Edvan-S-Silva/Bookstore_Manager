@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.controller;
+package wdabookstore.bookstoremanager.controllers.impl;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/usuarios")
-public class UsuarioController {
-    @ApiOperation(value = "Listar Usuários")
+@RequestMapping("/api/v1/alugueis")
+
+public class RentalController {
+    @ApiOperation(value = "Listar Aluguéis")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Usuarios retornados com sucesso!")
+            @ApiResponse(code = 200, message = "Alugueis retornados com sucesso!")
     })
     @GetMapping
     public String hello(){

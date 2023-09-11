@@ -1,11 +1,10 @@
-package wdabookstore.bookstoremanager.entities.Books;
+package wdabookstore.bookstoremanager.entities;
 
 import lombok.Getter;
 import lombok.Setter;
-import wdabookstore.bookstoremanager.entities.Publishers.PublishersEntity;
+import wdabookstore.bookstoremanager.DataBase.Publishers.PublishersEntity;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
@@ -31,7 +30,9 @@ public class BooksEntity {
     @Column(nullable = false, columnDefinition = "integer default 0")
     private int totalrent;
 
-    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
-    private List<PublishersEntity> PublisherEntities;
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private PublishersEntity publisher;
+
 
 }

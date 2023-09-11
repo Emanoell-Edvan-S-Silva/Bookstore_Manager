@@ -1,12 +1,9 @@
-package wdabookstore.bookstoremanager.entities.Users;
+package wdabookstore.bookstoremanager.entities;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import wdabookstore.bookstoremanager.entities.Rents.RentsEntity;
-
 import javax.persistence.*;
-import java.util.List;
+
 
 @Getter
 @Setter
@@ -35,6 +32,4 @@ public class UsersEntity {
     @Column(nullable = false, columnDefinition = "integer default 0")
     private int totalrents;
 
-    @OneToMany(mappedBy = "rents", fetch = FetchType.LAZY)
-    private List<RentsEntity> RentsEntities;
 }

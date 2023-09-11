@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,7 +42,7 @@ public class BookstoreExceptionHandler extends ResponseEntityExceptionHandler {
             WebRequest request) {
         List<String> errors = new ArrayList<>();
         exception.getBindingResult().getFieldErrors().forEach(fieldError -> errors.add(
-                "Field " + fieldError.getField().toUpperCase() +  " " + fieldError.getDefaultMessage())
+                fieldError.getField().toUpperCase() +  ": " + fieldError.getDefaultMessage())
         );
         exception.getBindingResult().getGlobalErrors().forEach(globalErrors -> errors.add(
                 "Object " + globalErrors.getObjectName() +  " " + globalErrors.getDefaultMessage())
@@ -58,11 +57,9 @@ public class BookstoreExceptionHandler extends ResponseEntityExceptionHandler {
     }
     private ResponseEntity<Object> buildResponseEntity(HttpStatus httpStatus, String message, List<String> errors) {
         ApiError apiError = ApiError.builder()
-                .code(httpStatus.value())
-                .status(httpStatus.getReasonPhrase())
+
                 .message(message)
                 .errors(errors)
-                .timestamp(LocalDateTime.now())
                 .build();
         return ResponseEntity.status(httpStatus).body(apiError);
     }

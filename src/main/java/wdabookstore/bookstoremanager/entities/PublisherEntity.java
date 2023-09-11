@@ -1,17 +1,16 @@
-package wdabookstore.bookstoremanager.entities.Publishers;
+package wdabookstore.bookstoremanager.entities;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import wdabookstore.bookstoremanager.entities.Books.BooksEntity;
-
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity
-public class PublishersEntity {
+@Table(name = "tb_publishers")
+public class PublisherEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +22,5 @@ public class PublishersEntity {
     @Column(nullable = false, length = 100)
     private String city;
 
-    @OneToMany(mappedBy = "books", fetch = FetchType.LAZY)
-    private List<BooksEntity> booksEntities;
+    @OneToMany
 }
