@@ -1,5 +1,5 @@
 package wdabookstore.bookstoremanager.entities;
 
-public class BooksEntity {
+public class BookEntity {
 
 }

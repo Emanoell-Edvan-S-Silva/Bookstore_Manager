@@ -22,5 +22,4 @@ public class PublisherEntity implements Serializable {
     @Column(nullable = false, length = 100)
     private String city;
 
-    @OneToMany
 }
