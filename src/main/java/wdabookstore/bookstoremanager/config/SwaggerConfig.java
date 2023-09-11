@@ -17,7 +17,7 @@ public class SwaggerConfig {
     private static final String BASE_PACKAGE = "wdabookstore.bookstoremanager";
     private static final String API_TITLE = "API WDA Bookstore";
     private static final String API_DESCRIPTION = "Bookstore Manager API REST";
-    private static final String API_VERSION = "13.22.17";
+    private static final String API_VERSION = "1.0.0";
     private static final String CONTACT_NAME = "Emanoell Edvan";
     private static final String CONTACT_GITHUB = "https://github.com/Emanoell-Edvan-S-Silva";
     private static final String CONTACT_EMAIL = "emanoelledvan1706@gmail.com";
