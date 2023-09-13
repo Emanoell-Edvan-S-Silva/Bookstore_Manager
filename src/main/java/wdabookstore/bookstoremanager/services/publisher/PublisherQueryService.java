@@ -9,13 +9,15 @@ import java.util.List;
 
 @Service
 public class PublisherQueryService {
+
     @Autowired
     private PublisherRepository publisherRepository;
-    public List<PublisherEntity> findAllPublishers() {
+
+    public List<PublisherEntity> findAll() {
         return publisherRepository.findAll();
     }
 
-    public PublisherEntity findByIdPublisher(Long id){
+    public PublisherEntity findById(Long id){
         return this.publisherRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Editora não encontrada!"));
     }
