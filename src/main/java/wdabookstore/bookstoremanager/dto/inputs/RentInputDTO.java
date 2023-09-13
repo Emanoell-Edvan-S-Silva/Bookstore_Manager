@@ -1,4 +1,4 @@
 package wdabookstore.bookstoremanager.dto.inputs;
 
-public class UserInput {
+public class RentInputDTO {
 }
