@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tb_users")
 public class UserEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +19,7 @@ public class UserEntity {
     private  String name;
 
     @Column(nullable = false, unique = true, length = 100)
-    private  String email;
+    private String email;
 
     @Column(nullable = false, length = 100)
     private String city;

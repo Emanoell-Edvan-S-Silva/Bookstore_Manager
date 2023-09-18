@@ -3,8 +3,9 @@ package wdabookstore.bookstoremanager.services.publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import wdabookstore.bookstoremanager.Mappers.PublisherMapper;
-import wdabookstore.bookstoremanager.dto.inputs.PublisherInputDTO;
+import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputCreate;
+import wdabookstore.bookstoremanager.mappers.PublisherMapper;
+import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputUpdate;
 import wdabookstore.bookstoremanager.dto.output.PublisherOutputDTO;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
 import wdabookstore.bookstoremanager.repositories.PublisherRepository;
@@ -23,16 +24,15 @@ public class PublisherCommandService {
     private PublisherQueryService publisherQueryServices;
 
     @Transactional
-    public PublisherOutputDTO create(PublisherInputDTO publisherdata) {
-        PublisherEntity publisher = publisherMapper.mapperInputToEntity(publisherdata);
+    public PublisherOutputDTO create(PublisherInputCreate publisherdata) {
+        PublisherEntity publisher = publisherMapper.mapperInputToEntityCreate(publisherdata);
         publisherRepository.save(publisher);
         return publisherMapper.mapperEntityToOutput(publisher);
     }
-
     @Transactional
-    public PublisherOutputDTO update(@Valid PublisherInputDTO request) {
+    public PublisherOutputDTO update(@Valid PublisherInputUpdate request) {
         publisherQueryServices.findById(request.getId());
-        PublisherEntity publisher = publisherMapper.mapperInputToEntity(request);
+        PublisherEntity publisher = publisherMapper.mapperInputToEntityUpdate(request);
         publisherRepository.save(publisher);
         return publisherMapper.mapperEntityToOutput(publisher);
     }

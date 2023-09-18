@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.dto.inputs;
+package wdabookstore.bookstoremanager.dto.inputs.publisher_inputs;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -13,9 +13,7 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PublisherInputDTO {
-
-    private Long id;
+public class PublisherInputCreate {
 
     @NotBlank(message = "Campo não informado!")
     @Size(min = 4,max = 100, message = "O campo nome deve ter entre 4 e 100 caracteres")
@@ -26,5 +24,4 @@ public class PublisherInputDTO {
     @Size(min = 4,max = 100, message = "O campo de deve ter entre 4 e 100 caracteres")
     @ApiModelProperty(required = true)
     private String city;
-
 }
