@@ -3,8 +3,9 @@ package wdabookstore.bookstoremanager.services.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import wdabookstore.bookstoremanager.Mappers.UserMapper;
-import wdabookstore.bookstoremanager.dto.inputs.UserInputDTO;
+import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputCreate;
+import wdabookstore.bookstoremanager.mappers.UserMapper;
+import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputUpdate;
 import wdabookstore.bookstoremanager.dto.output.UserOutputDTO;
 import wdabookstore.bookstoremanager.entities.UserEntity;
 import wdabookstore.bookstoremanager.repositories.UserRepository;
@@ -23,16 +24,16 @@ public class UserCommandService {
     private UserQueryService userQueryService;
 
     @Transactional
-    public UserOutputDTO create(UserInputDTO userInputDTO) {
-        UserEntity user = userMapper.mapperInputToEntityCreate(userInputDTO);
+    public UserOutputDTO create(UserInputCreate userInputUpdate) {
+        UserEntity user = userMapper.mapperInputToEntityCreate(userInputUpdate);
         userRepository.save(user);
         return userMapper.mapperEntityToOutput(user);
     }
 
     @Transactional
-    public UserOutputDTO update(@Valid UserInputDTO userInputDTO) {
-        userQueryService.findById(userInputDTO.getId());
-        UserEntity publisher = userMapper.mapperInputToEntityUpdate(userInputDTO);
+    public UserOutputDTO update(@Valid UserInputUpdate userInputUpdate) {
+        userQueryService.findById(userInputUpdate.getId());
+        UserEntity publisher = userMapper.mapperInputToEntityUpdate(userInputUpdate);
         userRepository.save(publisher);
         return userMapper.mapperEntityToOutput(publisher);
     }

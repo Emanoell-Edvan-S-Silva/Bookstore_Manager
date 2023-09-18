@@ -1,13 +1,13 @@
 package wdabookstore.bookstoremanager.controllers.impl;
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import wdabookstore.bookstoremanager.Mappers.UserMapper;
-import wdabookstore.bookstoremanager.dto.inputs.UserInputDTO;
-import wdabookstore.bookstoremanager.dto.output.PublisherOutputDTO;
+import wdabookstore.bookstoremanager.controllers.interfaces.UserControllerDocs;
+import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputCreate;
+import wdabookstore.bookstoremanager.mappers.UserMapper;
+import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputUpdate;
 import wdabookstore.bookstoremanager.dto.output.UserOutputDTO;
 import wdabookstore.bookstoremanager.entities.UserEntity;
 import wdabookstore.bookstoremanager.services.user.UserCommandService;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/api/users")
-public class UserController {
+public class UserController implements UserControllerDocs {
 
     @Autowired
     private UserMapper userMapper;
@@ -31,8 +31,7 @@ public class UserController {
     @Autowired
     private UserCommandService userCommandService;
 
-    @ApiOperation(value = "Listar Usuários")
-    @GetMapping
+    @Override
     public ResponseEntity<List<UserOutputDTO>> findAll(){
         List<UserEntity> userOutputDTOS = userQueryService.findAll();
         List<UserOutputDTO> user = userOutputDTOS.stream()
@@ -41,29 +40,26 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
-    @ApiOperation(value = "Listar Editora(Id)")
-    @GetMapping("/{id}")
+    @Override
     public ResponseEntity<UserOutputDTO> findById(@PathVariable Long id){
         UserOutputDTO user = userMapper
                 .mapperEntityToOutput(userQueryService.findById(id));
         return ResponseEntity.ok().body(user);
     }
-    @ApiOperation(value = "Criar Novo Usuário")
-    @PostMapping
-    public ResponseEntity<UserOutputDTO> create(@Valid @RequestBody UserInputDTO userInput){
+
+    @Override
+    public ResponseEntity<UserOutputDTO> create(@Valid @RequestBody UserInputCreate userInput){
         UserOutputDTO createdPublisher = userCommandService.create(userInput);
         return new ResponseEntity<>(createdPublisher, HttpStatus.CREATED);
     }
 
-    @ApiOperation(value = "Atualizar Usuário")
-    @PutMapping
-    public ResponseEntity<UserOutputDTO> update(@Valid @RequestBody UserInputDTO userInput){
+    @Override
+    public ResponseEntity<UserOutputDTO> update(@Valid @RequestBody UserInputUpdate userInput){
         UserOutputDTO updatedPublisher = userCommandService.update(userInput);
         return new ResponseEntity<>(updatedPublisher, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Deletar Usuário")
-    @DeleteMapping("/{id}")
+    @Override
     public ResponseEntity<Void> delete(@PathVariable Long id){
         userCommandService.delete(id);
         return ResponseEntity.noContent().build();
