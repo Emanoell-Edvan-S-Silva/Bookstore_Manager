@@ -1,16 +1,16 @@
 package wdabookstore.bookstoremanager.controllers.impl;
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import wdabookstore.bookstoremanager.controllers.interfaces.BookControllerDocs;
 import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputCreate;
 import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputUpdate;
-import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputUpdate;
 import wdabookstore.bookstoremanager.dto.output.BookOutputDTO;
-import wdabookstore.bookstoremanager.dto.output.PublisherOutputDTO;
 import wdabookstore.bookstoremanager.entities.BookEntity;
 import wdabookstore.bookstoremanager.mappers.BookMapper;
 import wdabookstore.bookstoremanager.services.books.BookCommandService;

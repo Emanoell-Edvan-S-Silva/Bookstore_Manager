@@ -2,6 +2,9 @@ package wdabookstore.bookstoremanager.controllers.interfaces;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputCreate;
@@ -13,6 +16,11 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 @Api(tags = "Book-Actions")
+@ApiResponses({
+        @ApiResponse(code = 500,
+                message = "There was an internal error",
+                response = Problem.class)
+        })
 public interface BookControllerDocs {
 
     @ApiOperation(value = "Listar Livros")
