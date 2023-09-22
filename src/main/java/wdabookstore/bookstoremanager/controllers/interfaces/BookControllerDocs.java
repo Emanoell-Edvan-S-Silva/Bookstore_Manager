@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputCreate;
 import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.BookOutputDTO;
+import wdabookstore.bookstoremanager.dto.output.book_outputs.BookResponse;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,11 +17,11 @@ public interface BookControllerDocs {
 
     @ApiOperation(value = "Listar Livros")
     @GetMapping
-    ResponseEntity<List<BookOutputDTO>> findAll();
+    ResponseEntity<List<BookResponse>> findAll();
 
     @ApiOperation(value = "Listar Livro(Id)")
     @GetMapping("/{id}")
-    ResponseEntity<BookOutputDTO> findById(@PathVariable Long id);
+    ResponseEntity<BookResponse> findById(@PathVariable Long id);
 
     @ApiOperation(value = "Criar Novo Livro")
     @PostMapping

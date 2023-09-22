@@ -1,9 +1,11 @@
 package wdabookstore.bookstoremanager.entities;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,5 +34,9 @@ public class BookEntity {
 
     @ManyToOne(cascade = {CascadeType.MERGE})
     private PublisherEntity publisherEntity;
+
+    @ApiModelProperty(hidden = true)
+    @OneToMany(mappedBy = "bookEntity")
+    private List<RentEntity> rents;
 
 }

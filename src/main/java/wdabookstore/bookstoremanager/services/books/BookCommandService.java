@@ -5,9 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputCreate;
 import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputUpdate;
-import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.BookOutputDTO;
-import wdabookstore.bookstoremanager.dto.output.PublisherOutputDTO;
 import wdabookstore.bookstoremanager.entities.BookEntity;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
 import wdabookstore.bookstoremanager.mappers.BookMapper;
@@ -27,9 +24,9 @@ public class BookCommandService {
     private BookQueryService bookQueryService;
 
     @Transactional
-    public void create(BookInputCreate publisherdata) {
-        PublisherEntity publisher = bookQueryService.findPublisher(publisherdata.getPublisherId());
-        BookEntity Book = bookMapper.mapperInputToEntityCreate(publisherdata, publisher);
+    public void create(BookInputCreate bookInputCreate) {
+        PublisherEntity publisher = bookQueryService.findPublisher(bookInputCreate.getPublisherId());
+        BookEntity Book = bookMapper.mapperInputToEntityCreate(bookInputCreate, publisher);
         bookRepository.save(Book);
     }
     @Transactional

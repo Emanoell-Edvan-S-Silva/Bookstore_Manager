@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class PublisherInputUpdate {
 
+    @NotNull(message = "Campo não Informado")
     private Long id;
 
     @NotBlank(message = "Campo não informado!")

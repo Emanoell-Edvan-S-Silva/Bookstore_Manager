@@ -1,9 +1,11 @@
 package wdabookstore.bookstoremanager.entities;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,4 +34,9 @@ public class UserEntity {
 
     @Column(nullable = false, columnDefinition = "integer default 0")
     private int total_rents;
+
+    @ApiModelProperty(hidden = true)
+    @OneToMany(mappedBy = "userEntity")
+    private List<RentEntity> rents;
+
 }

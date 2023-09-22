@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputCreate;
 import wdabookstore.bookstoremanager.mappers.PublisherMapper;
 import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.PublisherOutputDTO;
+import wdabookstore.bookstoremanager.dto.output.publisher_outputs.PublisherResponse;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
 import wdabookstore.bookstoremanager.repositories.PublisherRepository;
 
@@ -24,17 +24,18 @@ public class PublisherCommandService {
     private PublisherQueryService publisherQueryServices;
 
     @Transactional
-    public PublisherOutputDTO create(PublisherInputCreate publisherdata) {
+    public void create(PublisherInputCreate publisherdata) {
         PublisherEntity publisher = publisherMapper.mapperInputToEntityCreate(publisherdata);
         publisherRepository.save(publisher);
-        return publisherMapper.mapperEntityToOutput(publisher);
+        publisherMapper.mapperEntityToOutput(publisher);
     }
+
     @Transactional
-    public PublisherOutputDTO update(@Valid PublisherInputUpdate request) {
+    public void update(@Valid PublisherInputUpdate request) {
         publisherQueryServices.findById(request.getId());
         PublisherEntity publisher = publisherMapper.mapperInputToEntityUpdate(request);
         publisherRepository.save(publisher);
-        return publisherMapper.mapperEntityToOutput(publisher);
+        publisherMapper.mapperEntityToOutput(publisher);
     }
 
     public void delete(Long id) {

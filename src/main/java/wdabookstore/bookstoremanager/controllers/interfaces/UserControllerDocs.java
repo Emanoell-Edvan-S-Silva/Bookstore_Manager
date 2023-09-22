@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputCreate;
 import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.UserOutputDTO;
+import wdabookstore.bookstoremanager.dto.output.user_outputs.UserResponse;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -16,19 +16,19 @@ import java.util.List;
 public interface UserControllerDocs {
     @ApiOperation(value = "Listar Usuários")
     @GetMapping
-    ResponseEntity<List<UserOutputDTO>> findAll();
+    ResponseEntity<List<UserResponse>> findAll();
 
     @ApiOperation(value = "Listar Usuário(Id)")
     @GetMapping("/{id}")
-    ResponseEntity<UserOutputDTO> findById(@PathVariable Long id);
+    ResponseEntity<UserResponse> findById(@PathVariable Long id);
 
     @ApiOperation(value = "Criar Novo Usuário")
     @PostMapping
-    ResponseEntity<UserOutputDTO> create(@Valid @RequestBody UserInputCreate userInput);
+    ResponseEntity<UserResponse> create(@Valid @RequestBody UserInputCreate userInput);
 
     @ApiOperation(value = "Atualizar Usuário")
     @PutMapping
-    ResponseEntity<UserOutputDTO> update(@Valid @RequestBody UserInputUpdate userInput);
+    ResponseEntity<UserResponse> update(@Valid @RequestBody UserInputUpdate userInput);
 
     @ApiOperation(value = "Deletar Usuário")
     @DeleteMapping("/{id}")

@@ -8,7 +8,7 @@ import wdabookstore.bookstoremanager.controllers.interfaces.UserControllerDocs;
 import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputCreate;
 import wdabookstore.bookstoremanager.mappers.UserMapper;
 import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.UserOutputDTO;
+import wdabookstore.bookstoremanager.dto.output.user_outputs.UserResponse;
 import wdabookstore.bookstoremanager.entities.UserEntity;
 import wdabookstore.bookstoremanager.services.user.UserCommandService;
 import wdabookstore.bookstoremanager.services.user.UserQueryService;
@@ -32,30 +32,30 @@ public class UserController implements UserControllerDocs {
     private UserCommandService userCommandService;
 
     @Override
-    public ResponseEntity<List<UserOutputDTO>> findAll(){
+    public ResponseEntity<List<UserResponse>> findAll(){
         List<UserEntity> userOutputDTOS = userQueryService.findAll();
-        List<UserOutputDTO> user = userOutputDTOS.stream()
+        List<UserResponse> user = userOutputDTOS.stream()
                 .map(userMapper::mapperEntityToOutput)
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(user);
     }
 
     @Override
-    public ResponseEntity<UserOutputDTO> findById(@PathVariable Long id){
-        UserOutputDTO user = userMapper
+    public ResponseEntity<UserResponse> findById(@PathVariable Long id){
+        UserResponse user = userMapper
                 .mapperEntityToOutput(userQueryService.findById(id));
         return ResponseEntity.ok().body(user);
     }
 
     @Override
-    public ResponseEntity<UserOutputDTO> create(@Valid @RequestBody UserInputCreate userInput){
-        UserOutputDTO createdPublisher = userCommandService.create(userInput);
+    public ResponseEntity<UserResponse> create(@Valid @RequestBody UserInputCreate userInput){
+        UserResponse createdPublisher = userCommandService.create(userInput);
         return new ResponseEntity<>(createdPublisher, HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<UserOutputDTO> update(@Valid @RequestBody UserInputUpdate userInput){
-        UserOutputDTO updatedPublisher = userCommandService.update(userInput);
+    public ResponseEntity<UserResponse> update(@Valid @RequestBody UserInputUpdate userInput){
+        UserResponse updatedPublisher = userCommandService.update(userInput);
         return new ResponseEntity<>(updatedPublisher, HttpStatus.OK);
     }
 

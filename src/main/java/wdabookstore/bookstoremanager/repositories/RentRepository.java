@@ -1,4 +1,7 @@
 package wdabookstore.bookstoremanager.repositories;
 
-public interface RentRepository{
+import org.springframework.data.jpa.repository.JpaRepository;
+import wdabookstore.bookstoremanager.entities.RentEntity;
+
+public interface RentRepository extends JpaRepository<RentEntity, Long> {
 }
