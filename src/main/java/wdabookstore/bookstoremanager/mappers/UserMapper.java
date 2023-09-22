@@ -3,13 +3,13 @@ package wdabookstore.bookstoremanager.mappers;
 import org.springframework.stereotype.Component;
 import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputCreate;
 import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.UserOutputDTO;
+import wdabookstore.bookstoremanager.dto.output.user_outputs.UserResponse;
 import wdabookstore.bookstoremanager.entities.UserEntity;
 
 @Component
 public class UserMapper {
-    public UserOutputDTO mapperEntityToOutput(UserEntity entity){
-        UserOutputDTO outputDTO = new UserOutputDTO();
+    public UserResponse mapperEntityToOutput(UserEntity entity){
+        UserResponse outputDTO = new UserResponse();
         outputDTO.setId(entity.getId());
         outputDTO.setName(entity.getName());
         outputDTO.setEmail(entity.getEmail());

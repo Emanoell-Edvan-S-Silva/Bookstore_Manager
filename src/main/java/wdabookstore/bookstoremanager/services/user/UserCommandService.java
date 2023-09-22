@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputCreate;
 import wdabookstore.bookstoremanager.mappers.UserMapper;
 import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.UserOutputDTO;
+import wdabookstore.bookstoremanager.dto.output.user_outputs.UserResponse;
 import wdabookstore.bookstoremanager.entities.UserEntity;
 import wdabookstore.bookstoremanager.repositories.UserRepository;
 
@@ -24,18 +24,18 @@ public class UserCommandService {
     private UserQueryService userQueryService;
 
     @Transactional
-    public UserOutputDTO create(UserInputCreate userInputUpdate) {
+    public void create(UserInputCreate userInputUpdate) {
         UserEntity user = userMapper.mapperInputToEntityCreate(userInputUpdate);
         userRepository.save(user);
-        return userMapper.mapperEntityToOutput(user);
+        userMapper.mapperEntityToOutput(user);
     }
 
     @Transactional
-    public UserOutputDTO update(@Valid UserInputUpdate userInputUpdate) {
+    public void update(@Valid UserInputUpdate userInputUpdate) {
         userQueryService.findById(userInputUpdate.getId());
-        UserEntity publisher = userMapper.mapperInputToEntityUpdate(userInputUpdate);
-        userRepository.save(publisher);
-        return userMapper.mapperEntityToOutput(publisher);
+        UserEntity user = userMapper.mapperInputToEntityUpdate(userInputUpdate);
+        userRepository.save(user);
+        userMapper.mapperEntityToOutput(user);
     }
 
     public void delete(Long id) {

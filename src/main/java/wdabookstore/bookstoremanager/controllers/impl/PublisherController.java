@@ -9,7 +9,7 @@ import wdabookstore.bookstoremanager.controllers.interfaces.PublisherControllerD
 import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputCreate;
 import wdabookstore.bookstoremanager.mappers.PublisherMapper;
 import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.PublisherOutputDTO;
+import wdabookstore.bookstoremanager.dto.output.publisher_outputs.PublisherResponse;
 import wdabookstore.bookstoremanager.services.publisher.PublisherCommandService;
 import wdabookstore.bookstoremanager.services.publisher.PublisherQueryService;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
@@ -34,28 +34,28 @@ public class PublisherController implements PublisherControllerDocs {
     private PublisherCommandService publisherCommandService;
 
     @Override
-    public ResponseEntity<List<PublisherOutputDTO>> findAll(){
+    public ResponseEntity<List<PublisherResponse>> findAll(){
         List<PublisherEntity> publishersEntities = publisherQueryServices.findAll();
-        List<PublisherOutputDTO> publishers = publishersEntities.stream()
+        List<PublisherResponse> publishers = publishersEntities.stream()
                 .map(publisherMapper::mapperEntityToOutput)
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(publishers);
     }
     @Override
-    public ResponseEntity<PublisherOutputDTO> findById(@PathVariable Long id){
-        PublisherOutputDTO publisher = publisherMapper
+    public ResponseEntity<PublisherResponse> findById(@PathVariable Long id){
+        PublisherResponse publisher = publisherMapper
                 .mapperEntityToOutput(publisherQueryServices.findById(id));
         return ResponseEntity.ok().body(publisher);
     }
 
     @Override
-    public ResponseEntity<PublisherOutputDTO> create(@Valid @RequestBody PublisherInputCreate publisher){
-        PublisherOutputDTO createdPublisher = publisherCommandService.create(publisher);
+    public ResponseEntity<PublisherResponse> create(@Valid @RequestBody PublisherInputCreate publisher){
+        PublisherResponse createdPublisher = publisherCommandService.create(publisher);
         return new ResponseEntity<>(createdPublisher, HttpStatus.CREATED);
     }
     @Override
-    public ResponseEntity<PublisherOutputDTO> update(@Valid @RequestBody PublisherInputUpdate publisher){
-        PublisherOutputDTO updatedPublisher = publisherCommandService.update(publisher);
+    public ResponseEntity<PublisherResponse> update(@Valid @RequestBody PublisherInputUpdate publisher){
+        PublisherResponse updatedPublisher = publisherCommandService.update(publisher);
         return new ResponseEntity<>(updatedPublisher, HttpStatus.OK);
     }
     @Override

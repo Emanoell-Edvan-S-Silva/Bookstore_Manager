@@ -3,17 +3,16 @@ package wdabookstore.bookstoremanager.mappers;
 import org.springframework.stereotype.Component;
 import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputCreate;
 import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.BookOutputDTO;
-import wdabookstore.bookstoremanager.dto.output.PublisherOutputDTO;
+import wdabookstore.bookstoremanager.dto.output.book_outputs.BookResponse;
+import wdabookstore.bookstoremanager.dto.output.publisher_outputs.PublisherResponse;
 import wdabookstore.bookstoremanager.entities.BookEntity;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
-
 
 @Component
 public class BookMapper {
 
-    public BookOutputDTO mapperEntityToOutput(BookEntity entity){
-        BookOutputDTO outputDTO = new BookOutputDTO();
+    public BookResponse mapperEntityToOutput(BookEntity entity){
+        BookResponse outputDTO = new BookResponse();
         outputDTO.setId(entity.getId());
         outputDTO.setName(entity.getName());
         outputDTO.setAuthor(entity.getAuthor());
@@ -43,11 +42,11 @@ public class BookMapper {
         return entity;
     }
 
-    private PublisherOutputDTO toPublisherOutput(PublisherEntity publisherEntity){
-        PublisherOutputDTO publisherOutputDTO = new PublisherOutputDTO();
-        publisherOutputDTO.setId(publisherEntity.getId());
-        publisherOutputDTO.setCity(publisherEntity.getCity());
-        publisherOutputDTO.setName(publisherEntity.getName());
-        return publisherOutputDTO;
+    private PublisherResponse toPublisherOutput(PublisherEntity publisherEntity){
+        PublisherResponse publisherResponse = new PublisherResponse();
+        publisherResponse.setId(publisherEntity.getId());
+        publisherResponse.setCity(publisherEntity.getCity());
+        publisherResponse.setName(publisherEntity.getName());
+        return publisherResponse;
     }
 }

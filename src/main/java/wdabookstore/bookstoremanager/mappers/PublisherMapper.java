@@ -3,7 +3,7 @@ package wdabookstore.bookstoremanager.mappers;
 import org.springframework.stereotype.Component;
 import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputCreate;
 import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.PublisherOutputDTO;
+import wdabookstore.bookstoremanager.dto.output.publisher_outputs.PublisherResponse;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
 
 @Component
@@ -24,8 +24,8 @@ public class PublisherMapper {
         return entity;
     }
 
-    public PublisherOutputDTO mapperEntityToOutput(PublisherEntity entity){
-        PublisherOutputDTO outputDTO = new PublisherOutputDTO();
+    public PublisherResponse mapperEntityToOutput(PublisherEntity entity){
+        PublisherResponse outputDTO = new PublisherResponse();
         outputDTO.setId(entity.getId());
         outputDTO.setName(entity.getName());
         outputDTO.setCity(entity.getCity());

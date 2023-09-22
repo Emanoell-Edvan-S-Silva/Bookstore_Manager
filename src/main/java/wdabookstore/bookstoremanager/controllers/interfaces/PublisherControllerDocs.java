@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputCreate;
 import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.PublisherOutputDTO;
+import wdabookstore.bookstoremanager.dto.output.publisher_outputs.PublisherResponse;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,19 +17,19 @@ public interface PublisherControllerDocs {
 
     @ApiOperation(value = "Listar Editoras")
     @GetMapping
-    ResponseEntity<List<PublisherOutputDTO>> findAll();
+    ResponseEntity<List<PublisherResponse>> findAll();
 
     @ApiOperation(value = "Listar Editora(Id)")
     @GetMapping("/{id}")
-    ResponseEntity<PublisherOutputDTO> findById(@PathVariable Long id);
+    ResponseEntity<PublisherResponse> findById(@PathVariable Long id);
 
     @ApiOperation(value = "Criar Editora")
     @PostMapping
-    ResponseEntity<PublisherOutputDTO> create(@Valid @RequestBody PublisherInputCreate publisher);
+    ResponseEntity<PublisherResponse> create(@Valid @RequestBody PublisherInputCreate publisher);
 
     @ApiOperation(value = "Atualizar Editora")
     @PutMapping
-    ResponseEntity<PublisherOutputDTO> update(@Valid @RequestBody PublisherInputUpdate publisher);
+    ResponseEntity<PublisherResponse> update(@Valid @RequestBody PublisherInputUpdate publisher);
 
     @ApiOperation(value = "Deletar Editora")
     @DeleteMapping("/{id}")

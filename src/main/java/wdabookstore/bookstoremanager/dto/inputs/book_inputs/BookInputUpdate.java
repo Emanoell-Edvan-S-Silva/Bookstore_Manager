@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookInputUpdate {
-
+    @NotNull(message = "Campo não Informado")
     private Long id;
 
     @NotBlank(message = "Campo não informado!")
