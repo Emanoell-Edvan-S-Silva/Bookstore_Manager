@@ -6,9 +6,10 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import wdabookstore.bookstoremanager.dto.inputs.rent_inputs.RentInputCreate;
-import wdabookstore.bookstoremanager.dto.inputs.rent_inputs.RentInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.rent_outputs.RentResponse;
+import wdabookstore.bookstoremanager.dto.rent.RentFinalizeRent;
+import wdabookstore.bookstoremanager.dto.rent.RentInputCreate;
+import wdabookstore.bookstoremanager.dto.rent.RentExtendRent;
+import wdabookstore.bookstoremanager.dto.rent.RentResponse;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -18,9 +19,14 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Api(tags = "Rent-Actions")
 public interface RentControllerDocs {
-    @ApiOperation(value = "Listar Aluguéis")
-    @GetMapping
-    ResponseEntity<List<RentResponse>> findAll();
+
+    @ApiOperation(value = "Listar Aluguéis Atrasados/No Prazo")
+    @GetMapping("/LateAndOnTimeRents")
+    ResponseEntity<List<RentResponse>> findLateAndOnTimeRents();
+
+    @ApiOperation(value = "Listar Aluguéis Pendentes")
+    @GetMapping("/OutstandingRents")
+    ResponseEntity<List<RentResponse>> findOutstandingRents();
 
     @ApiOperation(value = "Listar Aluguel(Id)")
     @GetMapping("/{id}")
@@ -30,9 +36,14 @@ public interface RentControllerDocs {
     @PostMapping
     ResponseEntity<Void> create(@Valid @RequestBody RentInputCreate rentInputCreate);
 
-    @ApiOperation(value = "Atualizar Aluguel")
-    @PutMapping
-    ResponseEntity<Void> update(@Valid @RequestBody RentInputUpdate rentInputUpdate);
+
+    @ApiOperation(value = "Finalizar Aluguel")
+    @PutMapping("/finalize")
+    ResponseEntity<Void> finalizeRent(@Valid @RequestBody RentFinalizeRent rent);
+
+    @ApiOperation(value = "Estender Aluguel")
+    @PutMapping("/extend")
+    ResponseEntity<Void> extendRent(@Valid @RequestBody RentExtendRent rent);
 
     @ApiOperation(value = "Deletar Aluguel")
     @DeleteMapping("/{id}")

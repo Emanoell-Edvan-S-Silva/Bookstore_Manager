@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.dto.inputs.user_inputs;
+package wdabookstore.bookstoremanager.dto.user;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

@@ -3,18 +3,17 @@ package wdabookstore.bookstoremanager.services.rent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputCreate;
-import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputUpdate;
-import wdabookstore.bookstoremanager.dto.inputs.rent_inputs.RentInputCreate;
-import wdabookstore.bookstoremanager.dto.inputs.rent_inputs.RentInputUpdate;
+import wdabookstore.bookstoremanager.dto.rent.RentFinalizeRent;
+import wdabookstore.bookstoremanager.dto.rent.RentInputCreate;
+import wdabookstore.bookstoremanager.dto.rent.RentExtendRent;
 import wdabookstore.bookstoremanager.entities.BookEntity;
-import wdabookstore.bookstoremanager.entities.PublisherEntity;
 import wdabookstore.bookstoremanager.entities.RentEntity;
 import wdabookstore.bookstoremanager.entities.UserEntity;
 import wdabookstore.bookstoremanager.mappers.RentMapper;
 import wdabookstore.bookstoremanager.repositories.RentRepository;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Service
 public class RentCommandService {
@@ -35,10 +34,16 @@ public class RentCommandService {
         rentRepository.save(rent);
     }
     @Transactional
-    public void update(@Valid RentInputUpdate rentInputUpdate) {
-        UserEntity user = rentQueryService.findUserById(rentInputUpdate.getUserId());
-        BookEntity book = rentQueryService.findBookById(rentInputUpdate.getBookId());
-        RentEntity rent = rentMapper.mapperInputToEntityUpdate(rentInputUpdate, book, user);
+    public void extendRent (@Valid RentExtendRent rentExtendRent) {
+        RentEntity rent = rentQueryService.findById(rentExtendRent.getId());
+        rent.setForecastdate(rentExtendRent.getForecastdate());
+        rentRepository.save(rent);
+    }
+
+    @Transactional
+    public void finalizeRent (@Valid RentFinalizeRent rentFinalizeRent) {
+        RentEntity rent = rentQueryService.findById(rentFinalizeRent.getId());
+        rent.setReturndate(rentFinalizeRent.getReturndate());
         rentRepository.save(rent);
     }
 
@@ -48,6 +53,21 @@ public class RentCommandService {
             this.rentRepository.deleteById(id);
         } catch (Exception e) {
             throw new RuntimeException("Não é possivel excluir o aluguel");
+        }
+    }
+
+    public void updateRentStatus() {
+        List<RentEntity> rents = rentQueryService.findAll();
+
+        for (RentEntity rent : rents) {
+            if (rent.getReturndate() == null) {
+                rent.setStatus("Pendente");
+            } else if (rent.getForecastdate().compareTo(rent.getReturndate()) > 0) {
+                rent.setStatus("Atrasado");
+            } else {
+                rent.setStatus("No prazo");
+            }
+            rentRepository.save(rent);
         }
     }
 }

@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.exceptions;
+package wdabookstore.bookstoremanager.exceptions.general;
 
 import lombok.*;
 

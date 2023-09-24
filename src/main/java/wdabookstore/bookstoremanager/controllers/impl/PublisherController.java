@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.controllers.interfaces.PublisherControllerDocs;
-import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputCreate;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherInputCreate;
 import wdabookstore.bookstoremanager.mappers.PublisherMapper;
-import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.publisher_outputs.PublisherResponse;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherInputUpdate;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherResponse;
 import wdabookstore.bookstoremanager.services.publisher.PublisherCommandService;
 import wdabookstore.bookstoremanager.services.publisher.PublisherQueryService;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 @RestController
-@RequestMapping("/api/publisher")
+@RequestMapping("/api/publishers")
 @Validated
 public class PublisherController implements PublisherControllerDocs {
     @Autowired
@@ -49,18 +49,20 @@ public class PublisherController implements PublisherControllerDocs {
     }
 
     @Override
-    public ResponseEntity<PublisherResponse> create(@Valid @RequestBody PublisherInputCreate publisher){
-        PublisherResponse createdPublisher = publisherCommandService.create(publisher);
-        return new ResponseEntity<>(createdPublisher, HttpStatus.CREATED);
+    public ResponseEntity<Void> create(@Valid @RequestBody PublisherInputCreate publisher){
+        publisherCommandService.create(publisher);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @Override
-    public ResponseEntity<PublisherResponse> update(@Valid @RequestBody PublisherInputUpdate publisher){
-        PublisherResponse updatedPublisher = publisherCommandService.update(publisher);
-        return new ResponseEntity<>(updatedPublisher, HttpStatus.OK);
+    public ResponseEntity<Void> update(@Valid @RequestBody PublisherInputUpdate publisher){
+        publisherCommandService.update(publisher);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @Override
     public ResponseEntity<Void> delete(@PathVariable Long id){
         publisherCommandService.delete(id);
-        return ResponseEntity.noContent().build();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

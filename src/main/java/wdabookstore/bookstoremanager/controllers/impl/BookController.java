@@ -8,18 +8,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wdabookstore.bookstoremanager.controllers.interfaces.BookControllerDocs;
-import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputCreate;
-import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.book_outputs.BookResponse;
+import wdabookstore.bookstoremanager.dto.book.BookInputCreate;
+import wdabookstore.bookstoremanager.dto.book.BookInputUpdate;
+import wdabookstore.bookstoremanager.dto.book.BookResponse;
 import wdabookstore.bookstoremanager.entities.BookEntity;
 import wdabookstore.bookstoremanager.mappers.BookMapper;
-import wdabookstore.bookstoremanager.services.books.BookCommandService;
-import wdabookstore.bookstoremanager.services.books.BookQueryService;
+import wdabookstore.bookstoremanager.services.book.BookCommandService;
+import wdabookstore.bookstoremanager.services.book.BookQueryService;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping("/api/books")
 public class BookController implements BookControllerDocs {
@@ -43,6 +44,15 @@ public class BookController implements BookControllerDocs {
     }
 
     @Override
+    public ResponseEntity<List<BookResponse>> findAvaliableBooks(){
+        List<BookEntity> bookEntities = bookQueryService.findBooksAvailable();
+        List<BookResponse> user = bookEntities.stream()
+                .map(bookMapper::mapperEntityToOutput)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(user);
+    }
+
+    @Override
     public ResponseEntity<BookResponse> findById(@PathVariable Long id){
         BookResponse book = bookMapper
                 .mapperEntityToOutput(bookQueryService.findById(id));
@@ -50,16 +60,17 @@ public class BookController implements BookControllerDocs {
     }
 
     @Override
-    public ResponseEntity<Void> create(@Valid @RequestBody BookInputCreate Book){
-        bookCommandService.create(Book);
+    public ResponseEntity<Void> create(@Valid @RequestBody BookInputCreate book){
+        bookCommandService.create(book);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<Void> update(@Valid @RequestBody BookInputUpdate publisher){
-        bookCommandService.update(publisher);
+    public ResponseEntity<Void> update(@Valid @RequestBody BookInputUpdate book){
+        bookCommandService.update(book);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @Override
     public ResponseEntity<Void> delete(@PathVariable Long id){
         bookCommandService.delete(id);

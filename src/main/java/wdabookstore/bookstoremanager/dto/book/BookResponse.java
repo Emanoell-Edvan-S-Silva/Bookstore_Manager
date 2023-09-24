@@ -1,10 +1,11 @@
-package wdabookstore.bookstoremanager.dto.output.book_outputs;
+package wdabookstore.bookstoremanager.dto.book;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import wdabookstore.bookstoremanager.dto.output.publisher_outputs.PublisherResponse;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherRelatedAnswer;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherResponse;
 
 @Getter
 @Setter
@@ -24,5 +25,5 @@ public class BookResponse {
 
     private int total_leased;
 
-    private PublisherResponse publisher;
+    private PublisherRelatedAnswer publisher;
 }

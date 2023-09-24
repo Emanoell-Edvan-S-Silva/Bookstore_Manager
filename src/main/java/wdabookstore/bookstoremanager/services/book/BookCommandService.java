@@ -1,10 +1,10 @@
-package wdabookstore.bookstoremanager.services.books;
+package wdabookstore.bookstoremanager.services.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputCreate;
-import wdabookstore.bookstoremanager.dto.inputs.book_inputs.BookInputUpdate;
+import wdabookstore.bookstoremanager.dto.book.BookInputCreate;
+import wdabookstore.bookstoremanager.dto.book.BookInputUpdate;
 import wdabookstore.bookstoremanager.entities.BookEntity;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
 import wdabookstore.bookstoremanager.mappers.BookMapper;
@@ -44,4 +44,6 @@ public class BookCommandService {
             throw new RuntimeException("Não é possivel excluir pois há Aluguéis relacionados");
         }
     }
+
+
 }

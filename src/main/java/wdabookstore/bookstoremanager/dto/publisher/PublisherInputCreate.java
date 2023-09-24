@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.dto.inputs.user_inputs;
+package wdabookstore.bookstoremanager.dto.publisher;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserInputCreate {
+public class PublisherInputCreate {
 
     @NotBlank(message = "Campo não informado!")
     @Size(min = 4,max = 100, message = "O campo nome deve ter entre 4 e 100 caracteres")
@@ -24,14 +24,4 @@ public class UserInputCreate {
     @Size(min = 4,max = 100, message = "O campo de deve ter entre 4 e 100 caracteres")
     @ApiModelProperty(required = true)
     private String city;
-
-    @NotBlank(message = "Campo não informado!")
-    @Size(min = 4,max = 100, message = "O campo de deve ter entre 4 e 100 caracteres")
-    @ApiModelProperty(required = true)
-    private String email;
-
-    @NotBlank(message = "Campo não informado!")
-    @Size(min = 4,max = 100, message = "O campo de deve ter entre 4 e 100 caracteres")
-    @ApiModelProperty(required = true)
-    private String address;
 }

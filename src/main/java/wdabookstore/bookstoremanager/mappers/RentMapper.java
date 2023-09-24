@@ -1,11 +1,11 @@
 package wdabookstore.bookstoremanager.mappers;
 
 import org.springframework.stereotype.Component;
-import wdabookstore.bookstoremanager.dto.inputs.rent_inputs.RentInputCreate;
-import wdabookstore.bookstoremanager.dto.inputs.rent_inputs.RentInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.book_outputs.BookResponse;
-import wdabookstore.bookstoremanager.dto.output.rent_outputs.RentResponse;
-import wdabookstore.bookstoremanager.dto.output.user_outputs.UserResponse;
+import wdabookstore.bookstoremanager.dto.book.BookRelatedAnswer;
+import wdabookstore.bookstoremanager.dto.rent.RentInputCreate;
+import wdabookstore.bookstoremanager.dto.rent.RentExtendRent;
+import wdabookstore.bookstoremanager.dto.rent.RentResponse;
+import wdabookstore.bookstoremanager.dto.user.UserRelatedAnswer;
 import wdabookstore.bookstoremanager.entities.BookEntity;
 import wdabookstore.bookstoremanager.entities.RentEntity;
 import wdabookstore.bookstoremanager.entities.UserEntity;
@@ -39,25 +39,23 @@ public class RentMapper {
         return entity;
     }
 
-    public RentEntity mapperInputToEntityUpdate(RentInputUpdate rentInputUpdate, BookEntity bookEntity, UserEntity userEntity){
+    public RentEntity mapperInputToEntityUpdate(RentExtendRent rentExtendRent){
         RentEntity entity = new RentEntity();
-        entity.setId(rentInputUpdate.getId());
-        entity.setReturndate(rentInputUpdate.getReturndate());
-        entity.setForecastdate(rentInputUpdate.getForecastdate());
-        entity.setBookEntity(bookEntity);
-        entity.setUserEntity(userEntity);
+        entity.setId(rentExtendRent.getId());
+        entity.setForecastdate(rentExtendRent.getForecastdate());
+
         return entity;
     }
 
-    public BookResponse toBookOutput(BookEntity bookEntity){
-        BookResponse outputDTO = new BookResponse();
+    public BookRelatedAnswer toBookOutput(BookEntity bookEntity){
+        BookRelatedAnswer outputDTO = new BookRelatedAnswer();
         outputDTO.setId(bookEntity.getId());
         outputDTO.setName(bookEntity.getName());
         return outputDTO;
     }
 
-    public UserResponse toUserOutput(UserEntity entity){
-        UserResponse outputDTO = new UserResponse();
+    public UserRelatedAnswer toUserOutput(UserEntity entity){
+        UserRelatedAnswer outputDTO = new UserRelatedAnswer();
         outputDTO.setId(entity.getId());
         outputDTO.setName(entity.getName());
         return outputDTO;

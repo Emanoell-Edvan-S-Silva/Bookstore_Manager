@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.services.books;
+package wdabookstore.bookstoremanager.services.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +27,9 @@ public class BookQueryService {
 
     public PublisherEntity findPublisher(Long id){
         return publisherQueryService.findById(id);
+    }
+
+    public List<BookEntity> findBooksAvailable() {
+        return bookRepository.findBooksAvailable();
     }
 }

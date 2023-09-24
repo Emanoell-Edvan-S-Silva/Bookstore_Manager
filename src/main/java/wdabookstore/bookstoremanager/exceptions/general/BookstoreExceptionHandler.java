@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.exceptions;
+package wdabookstore.bookstoremanager.exceptions.general;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.dto.output.user_outputs;
+package wdabookstore.bookstoremanager.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
