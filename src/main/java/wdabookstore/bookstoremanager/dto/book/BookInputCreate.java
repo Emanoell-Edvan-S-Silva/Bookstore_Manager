@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.dto.inputs.book_inputs;
+package wdabookstore.bookstoremanager.dto.book;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -16,9 +16,7 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookInputUpdate {
-    @NotNull(message = "Campo não Informado")
-    private Long id;
+public class BookInputCreate {
 
     @NotBlank(message = "Campo não informado!")
     @Size(min = 4,max = 100, message = "O campo nome deve ter entre 4 e 100 caracteres")
@@ -41,5 +39,4 @@ public class BookInputUpdate {
 
     @NotNull(message = "Campo não informado!")
     private Long publisherId;
-
 }

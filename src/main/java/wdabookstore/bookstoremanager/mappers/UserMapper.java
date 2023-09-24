@@ -1,9 +1,9 @@
 package wdabookstore.bookstoremanager.mappers;
 
 import org.springframework.stereotype.Component;
-import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputCreate;
-import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.user_outputs.UserResponse;
+import wdabookstore.bookstoremanager.dto.user.UserInputCreate;
+import wdabookstore.bookstoremanager.dto.user.UserInputUpdate;
+import wdabookstore.bookstoremanager.dto.user.UserResponse;
 import wdabookstore.bookstoremanager.entities.UserEntity;
 
 @Component

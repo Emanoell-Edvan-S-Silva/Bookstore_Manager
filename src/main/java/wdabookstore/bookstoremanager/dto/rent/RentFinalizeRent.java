@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.dto.inputs.rent_inputs;
+package wdabookstore.bookstoremanager.dto.rent;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,20 +12,11 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RentInputUpdate {
+public class RentFinalizeRent {
 
-    @NotNull(message = "Campo não Informado")
+    @NotNull(message = "Campo não informado!")
     private Long id;
 
     @NotNull(message = "Campo não informado!")
-    private Date forecastdate;
-
-    @NotNull(message = "Campo não informado!")
     private Date returndate;
-
-    @NotNull(message = "Campo não informado!")
-    private Long userId;
-
-    @NotNull(message = "Campo não informado!")
-    private Long bookId;
 }

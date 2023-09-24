@@ -1,5 +1,6 @@
 package wdabookstore.bookstoremanager.entities;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,13 +19,16 @@ public class RentEntity {
 
         @Column(nullable = false)
         @Temporal(TemporalType.DATE)
+        @ApiModelProperty(example = "2023-09-22")
         private Date rentdate;
 
         @Column(nullable = false)
         @Temporal(TemporalType.DATE)
+        @ApiModelProperty(example = "2023-09-22")
         private Date forecastdate;
 
         @Temporal(TemporalType.DATE)
+        @ApiModelProperty(example = "2023-09-22")
         private Date returndate;
 
         @Column

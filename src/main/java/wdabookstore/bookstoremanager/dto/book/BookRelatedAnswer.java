@@ -1,4 +1,4 @@
-package wdabookstore.bookstoremanager.dto.output.publisher_outputs;
+package wdabookstore.bookstoremanager.dto.book;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,11 +9,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PublisherResponse {
+public class BookRelatedAnswer {
 
     private Long id;
 
-    private  String name;
-
-    private String city;
+    private String name;
 }

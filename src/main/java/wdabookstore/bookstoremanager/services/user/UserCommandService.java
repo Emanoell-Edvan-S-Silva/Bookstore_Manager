@@ -3,10 +3,9 @@ package wdabookstore.bookstoremanager.services.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputCreate;
+import wdabookstore.bookstoremanager.dto.user.UserInputCreate;
 import wdabookstore.bookstoremanager.mappers.UserMapper;
-import wdabookstore.bookstoremanager.dto.inputs.user_inputs.UserInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.user_outputs.UserResponse;
+import wdabookstore.bookstoremanager.dto.user.UserInputUpdate;
 import wdabookstore.bookstoremanager.entities.UserEntity;
 import wdabookstore.bookstoremanager.repositories.UserRepository;
 

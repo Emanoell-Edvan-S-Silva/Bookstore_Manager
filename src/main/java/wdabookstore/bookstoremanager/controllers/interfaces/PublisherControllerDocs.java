@@ -2,15 +2,20 @@ package wdabookstore.bookstoremanager.controllers.interfaces;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputCreate;
-import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.publisher_outputs.PublisherResponse;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherInputCreate;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherInputUpdate;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherResponse;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@ApiResponses(value = {
+        @ApiResponse(code = 500, message = "Houve um erro interno")
+})
 @SuppressWarnings("unused")
 @Api(tags = "Publisher-Actions")
 public interface PublisherControllerDocs {
@@ -25,11 +30,11 @@ public interface PublisherControllerDocs {
 
     @ApiOperation(value = "Criar Editora")
     @PostMapping
-    ResponseEntity<PublisherResponse> create(@Valid @RequestBody PublisherInputCreate publisher);
+    ResponseEntity<Void> create(@Valid @RequestBody PublisherInputCreate publisher);
 
     @ApiOperation(value = "Atualizar Editora")
     @PutMapping
-    ResponseEntity<PublisherResponse> update(@Valid @RequestBody PublisherInputUpdate publisher);
+    ResponseEntity<Void> update(@Valid @RequestBody PublisherInputUpdate publisher);
 
     @ApiOperation(value = "Deletar Editora")
     @DeleteMapping("/{id}")

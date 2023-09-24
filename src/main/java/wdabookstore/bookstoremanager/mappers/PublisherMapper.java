@@ -1,9 +1,9 @@
 package wdabookstore.bookstoremanager.mappers;
 
 import org.springframework.stereotype.Component;
-import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputCreate;
-import wdabookstore.bookstoremanager.dto.inputs.publisher_inputs.PublisherInputUpdate;
-import wdabookstore.bookstoremanager.dto.output.publisher_outputs.PublisherResponse;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherInputCreate;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherInputUpdate;
+import wdabookstore.bookstoremanager.dto.publisher.PublisherResponse;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
 
 @Component
