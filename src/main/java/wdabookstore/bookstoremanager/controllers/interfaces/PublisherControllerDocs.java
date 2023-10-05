@@ -20,9 +20,9 @@ import java.util.List;
 @Api(tags = "Publisher-Actions")
 public interface PublisherControllerDocs {
 
-    @ApiOperation(value = "Listar Editoras")
+    @ApiOperation(value = "Listar Editoras ")
     @GetMapping
-    ResponseEntity<List<PublisherResponse>> findAll();
+    ResponseEntity<List<PublisherResponse>> findAllNotDeleted();
 
     @ApiOperation(value = "Listar Editora(Id)")
     @GetMapping("/{id}")

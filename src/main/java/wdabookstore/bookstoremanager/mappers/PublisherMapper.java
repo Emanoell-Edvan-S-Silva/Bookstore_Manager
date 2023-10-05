@@ -13,14 +13,15 @@ public class PublisherMapper {
         entity.setId(inputDTO.getId());
         entity.setName(inputDTO.getName());
         entity.setCity(inputDTO.getCity());
-
+        entity.setDeleted(false);
         return entity;
     }
+
     public PublisherEntity mapperInputToEntityCreate(PublisherInputCreate inputDTO){
         PublisherEntity entity = new PublisherEntity();
         entity.setName(inputDTO.getName());
         entity.setCity(inputDTO.getCity());
-
+        entity.setDeleted(false);
         return entity;
     }
 
@@ -29,7 +30,6 @@ public class PublisherMapper {
         outputDTO.setId(entity.getId());
         outputDTO.setName(entity.getName());
         outputDTO.setCity(entity.getCity());
-
         return outputDTO;
     }
 
@@ -38,7 +38,6 @@ public class PublisherMapper {
         inputDTO.setId(entity.getId());
         inputDTO.setName(entity.getName());
         inputDTO.setCity(entity.getCity());
-
         return inputDTO;
     }
 

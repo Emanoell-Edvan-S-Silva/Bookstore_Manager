@@ -13,8 +13,8 @@ import wdabookstore.bookstoremanager.dto.book.BookInputUpdate;
 import wdabookstore.bookstoremanager.dto.book.BookResponse;
 import wdabookstore.bookstoremanager.entities.BookEntity;
 import wdabookstore.bookstoremanager.mappers.BookMapper;
-import wdabookstore.bookstoremanager.services.book.BookCommandService;
-import wdabookstore.bookstoremanager.services.book.BookQueryService;
+import wdabookstore.bookstoremanager.services.interfaces.book.BookCommandService;
+import wdabookstore.bookstoremanager.services.interfaces.book.BookQueryService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -22,31 +22,21 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 @RestController
-@RequestMapping("/api/books")
+@RequestMapping("/api/Books")
 public class BookController implements BookControllerDocs {
 
+    @Autowired
+    private BookMapper bookMapper;
     @Autowired
     private BookCommandService bookCommandService;
 
     @Autowired
     private BookQueryService bookQueryService;
 
-    @Autowired
-    private BookMapper bookMapper;
-
     @Override
-    public ResponseEntity<List<BookResponse>> findAll(){
-        List<BookEntity> bookOutputDTOS = bookQueryService.findAll();
+    public ResponseEntity<List<BookResponse>> findAllNotDeleted(){
+        List<BookEntity> bookOutputDTOS = bookQueryService.findAllNotDeleted();
         List<BookResponse> user = bookOutputDTOS.stream()
-                .map(bookMapper::mapperEntityToOutput)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok().body(user);
-    }
-
-    @Override
-    public ResponseEntity<List<BookResponse>> findAvaliableBooks(){
-        List<BookEntity> bookEntities = bookQueryService.findBooksAvailable();
-        List<BookResponse> user = bookEntities.stream()
                 .map(bookMapper::mapperEntityToOutput)
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(user);

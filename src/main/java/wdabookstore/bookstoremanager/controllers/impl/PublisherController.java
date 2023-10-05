@@ -10,9 +10,9 @@ import wdabookstore.bookstoremanager.dto.publisher.PublisherInputCreate;
 import wdabookstore.bookstoremanager.mappers.PublisherMapper;
 import wdabookstore.bookstoremanager.dto.publisher.PublisherInputUpdate;
 import wdabookstore.bookstoremanager.dto.publisher.PublisherResponse;
-import wdabookstore.bookstoremanager.services.publisher.PublisherCommandService;
-import wdabookstore.bookstoremanager.services.publisher.PublisherQueryService;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
+import wdabookstore.bookstoremanager.services.interfaces.publisher.PublisherCommandService;
+import wdabookstore.bookstoremanager.services.interfaces.publisher.PublisherQueryService;
 
 
 import javax.validation.Valid;
@@ -21,8 +21,7 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 @RestController
-@RequestMapping("/api/publishers")
-@Validated
+@RequestMapping("/api/Publishers")
 public class PublisherController implements PublisherControllerDocs {
     @Autowired
     private PublisherMapper publisherMapper;
@@ -34,13 +33,14 @@ public class PublisherController implements PublisherControllerDocs {
     private PublisherCommandService publisherCommandService;
 
     @Override
-    public ResponseEntity<List<PublisherResponse>> findAll(){
-        List<PublisherEntity> publishersEntities = publisherQueryServices.findAll();
+    public ResponseEntity<List<PublisherResponse>> findAllNotDeleted(){
+        List<PublisherEntity> publishersEntities = publisherQueryServices.findAllNotDeleted();
         List<PublisherResponse> publishers = publishersEntities.stream()
                 .map(publisherMapper::mapperEntityToOutput)
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(publishers);
     }
+
     @Override
     public ResponseEntity<PublisherResponse> findById(@PathVariable Long id){
         PublisherResponse publisher = publisherMapper

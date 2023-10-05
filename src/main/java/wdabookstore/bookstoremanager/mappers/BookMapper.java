@@ -20,7 +20,7 @@ public class BookMapper {
         outputDTO.setAmount(entity.getAmount());
         outputDTO.setLaunch(entity.getLaunch());
         outputDTO.setTotal_leased(entity.getTotal_leased());
-        outputDTO.setPublisher(toPublisherOutput(entity.getPublisherEntity()));
+        outputDTO.setPublisher(toPublisherOutput(entity.getPublisher()));
         return outputDTO;
     }
     public BookEntity mapperInputToEntityCreate(BookInputCreate bookInputUpdate, PublisherEntity publisherInputDTO){
@@ -29,7 +29,8 @@ public class BookMapper {
         entity.setAuthor(bookInputUpdate.getAuthor());
         entity.setAmount(bookInputUpdate.getAmount());
         entity.setLaunch(bookInputUpdate.getLaunch());
-        entity.setPublisherEntity(publisherInputDTO);
+        entity.setDeleted(false);
+        entity.setPublisher(publisherInputDTO);
         return entity;
     }
 
@@ -40,7 +41,8 @@ public class BookMapper {
         entity.setAuthor(inputDTO.getAuthor());
         entity.setAmount(inputDTO.getAmount());
         entity.setLaunch(inputDTO.getLaunch());
-        entity.setPublisherEntity(publisherInputDTO);
+        entity.setDeleted(false);
+        entity.setPublisher(publisherInputDTO);
         return entity;
     }
 

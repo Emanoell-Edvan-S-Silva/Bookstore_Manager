@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -17,10 +18,10 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, length = 100)
     private  String name;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, length = 100)
     private String email;
 
     @Column(nullable = false, length = 100)
@@ -29,14 +30,10 @@ public class UserEntity {
     @Column(nullable = false, length = 100)
     private String address;
 
-    @Column(nullable = false, columnDefinition = "integer default 0")
-    private int active_rentals;
-
-    @Column(nullable = false, columnDefinition = "integer default 0")
-    private int total_rents;
-
     @ApiModelProperty(hidden = true)
     @OneToMany(mappedBy = "userEntity")
-    private List<RentEntity> rents;
+    private List<RentalEntity> rents;
+
+    private boolean deleted;
 
 }
