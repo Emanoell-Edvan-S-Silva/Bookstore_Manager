@@ -32,11 +32,13 @@ public class BookEntity {
     @Column
     private int total_leased;
 
-    @ManyToOne(cascade = {CascadeType.MERGE})
-    private PublisherEntity publisherEntity;
+    @ManyToOne
+    @JoinColumn(name = "publisher_entity_id")
+    private PublisherEntity publisher;
 
     @ApiModelProperty(hidden = true)
     @OneToMany(mappedBy = "bookEntity")
-    private List<RentEntity> rents;
+    private List<RentalEntity> rents;
 
+    private boolean deleted;
 }

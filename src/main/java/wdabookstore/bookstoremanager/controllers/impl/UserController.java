@@ -10,8 +10,8 @@ import wdabookstore.bookstoremanager.mappers.UserMapper;
 import wdabookstore.bookstoremanager.dto.user.UserInputUpdate;
 import wdabookstore.bookstoremanager.dto.user.UserResponse;
 import wdabookstore.bookstoremanager.entities.UserEntity;
-import wdabookstore.bookstoremanager.services.user.UserCommandService;
-import wdabookstore.bookstoremanager.services.user.UserQueryService;
+import wdabookstore.bookstoremanager.services.interfaces.user.UserCommandService;
+import wdabookstore.bookstoremanager.services.interfaces.user.UserQueryService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/Users")
 public class UserController implements UserControllerDocs {
 
     @Autowired
@@ -33,7 +33,7 @@ public class UserController implements UserControllerDocs {
 
     @Override
     public ResponseEntity<List<UserResponse>> findAll(){
-        List<UserEntity> userEntities = userQueryService.findAll();
+        List<UserEntity> userEntities = userQueryService.findAllNotDeleted();
         List<UserResponse> users = userEntities.stream()
                 .map(userMapper::mapperEntityToOutput)
                 .collect(Collectors.toList());

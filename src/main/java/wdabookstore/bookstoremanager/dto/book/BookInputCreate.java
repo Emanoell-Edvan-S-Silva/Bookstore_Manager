@@ -33,7 +33,6 @@ public class BookInputCreate {
     @ApiModelProperty(required = true)
     private Integer launch;
 
-    @NotNull(message = "Campo não informado!")
     @Min(value = 1, message = "O valor deve ser maior que 0")
     private int amount;
 

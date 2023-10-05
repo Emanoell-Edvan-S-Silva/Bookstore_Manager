@@ -21,5 +21,4 @@ public class UserResponse {
 
     private String address;
 
-    private int active_rentals;
 }

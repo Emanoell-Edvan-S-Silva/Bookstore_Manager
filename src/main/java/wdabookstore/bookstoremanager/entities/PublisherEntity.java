@@ -17,14 +17,15 @@ public class PublisherEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, length = 100)
     private  String name;
 
     @Column(nullable = false, length = 100)
     private String city;
 
     @ApiModelProperty(hidden = true)
-    @OneToMany(mappedBy = "publisherEntity")
+    @OneToMany(mappedBy = "publisher")
     private List<BookEntity> books;
 
+    private boolean deleted;
 }

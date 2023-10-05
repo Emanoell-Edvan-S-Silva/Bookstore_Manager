@@ -15,8 +15,6 @@ public class UserMapper {
         outputDTO.setEmail(entity.getEmail());
         outputDTO.setCity(entity.getCity());
         outputDTO.setAddress(entity.getAddress());
-        outputDTO.setActive_rentals(entity.getActive_rentals());
-
         return outputDTO;
     }
 
@@ -26,7 +24,7 @@ public class UserMapper {
         entity.setEmail(inputDTO.getEmail());
         entity.setCity(inputDTO.getCity());
         entity.setAddress(inputDTO.getAddress());
-
+        entity.setDeleted(false);
         return entity;
     }
 
@@ -37,7 +35,7 @@ public class UserMapper {
         entity.setEmail(inputDTO.getEmail());
         entity.setCity(inputDTO.getCity());
         entity.setAddress(inputDTO.getAddress());
-
+        entity.setDeleted(false);
         return entity;
     }
 }
