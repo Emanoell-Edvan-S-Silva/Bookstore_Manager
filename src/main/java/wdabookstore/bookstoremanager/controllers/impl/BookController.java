@@ -3,10 +3,7 @@ package wdabookstore.bookstoremanager.controllers.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.controllers.interfaces.BookControllerDocs;
 import wdabookstore.bookstoremanager.dto.book.BookInputCreate;
 import wdabookstore.bookstoremanager.dto.book.BookInputUpdate;
@@ -23,6 +20,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/api/Books")
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 public class BookController implements BookControllerDocs {
 
     @Autowired
@@ -34,18 +32,27 @@ public class BookController implements BookControllerDocs {
     private BookQueryService bookQueryService;
 
     @Override
-    public ResponseEntity<List<BookResponse>> findAllNotDeleted(){
+    public ResponseEntity<List<BookResponse>> findAll(){
         List<BookEntity> bookOutputDTOS = bookQueryService.findAllNotDeleted();
-        List<BookResponse> user = bookOutputDTOS.stream()
+        List<BookResponse> book = bookOutputDTOS.stream()
                 .map(bookMapper::mapperEntityToOutput)
                 .collect(Collectors.toList());
-        return ResponseEntity.ok().body(user);
+        return ResponseEntity.ok().body(book);
     }
 
     @Override
     public ResponseEntity<BookResponse> findById(@PathVariable Long id){
         BookResponse book = bookMapper
                 .mapperEntityToOutput(bookQueryService.findById(id));
+        return ResponseEntity.ok().body(book);
+    }
+
+    @Override
+    public ResponseEntity<List<BookResponse>> findAllAvailableBooks(){
+        List<BookEntity> bookOutputDTOS = bookQueryService.findAllAvailableBooks();
+        List<BookResponse> book = bookOutputDTOS.stream()
+                .map(bookMapper::mapperEntityToOutput)
+                .collect(Collectors.toList());
         return ResponseEntity.ok().body(book);
     }
 

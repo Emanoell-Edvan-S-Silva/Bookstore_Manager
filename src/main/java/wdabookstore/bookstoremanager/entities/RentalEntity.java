@@ -7,7 +7,6 @@ import wdabookstore.bookstoremanager.status.RentalStatus;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -20,14 +19,14 @@ public class RentalEntity {
         private Long id;
 
         @Column(nullable = false)
-        @ApiModelProperty(example = "2023-09-22")
+        @ApiModelProperty(example = "XXXX-XX-XX")
         private LocalDate rentaldate;
 
         @Column(nullable = false)
-        @ApiModelProperty(example = "2023-09-22")
-        private LocalDate returnprevisiondate;
+        @ApiModelProperty(example = "XXXX-XX-XX")
+        private LocalDate previsiondate;
 
-        @ApiModelProperty(example = "2023-09-22")
+        @ApiModelProperty(example = "XXXX-XX-XX")
         private LocalDate returndate;
 
         @Column(nullable = false)

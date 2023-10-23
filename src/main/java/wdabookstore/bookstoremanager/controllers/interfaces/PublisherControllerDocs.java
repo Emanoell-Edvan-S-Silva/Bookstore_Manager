@@ -22,7 +22,7 @@ public interface PublisherControllerDocs {
 
     @ApiOperation(value = "Listar Editoras ")
     @GetMapping
-    ResponseEntity<List<PublisherResponse>> findAllNotDeleted();
+    ResponseEntity<List<PublisherResponse>> findAll();
 
     @ApiOperation(value = "Listar Editora(Id)")
     @GetMapping("/{id}")

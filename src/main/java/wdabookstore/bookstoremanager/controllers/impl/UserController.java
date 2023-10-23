@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/api/Users")
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 public class UserController implements UserControllerDocs {
 
     @Autowired

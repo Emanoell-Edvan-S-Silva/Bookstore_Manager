@@ -8,6 +8,8 @@ import java.util.List;
 public interface BookQueryService {
     List<BookEntity> findAllNotDeleted();
 
+    List<BookEntity> findAllAvailableBooks();
+
     BookEntity findById(Long id);
 
     PublisherEntity findPublisher(Long id);

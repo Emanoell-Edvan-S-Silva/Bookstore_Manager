@@ -1,6 +1,5 @@
 package wdabookstore.bookstoremanager.dto.rental;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +20,7 @@ public class RentalResponse {
 
     private LocalDate rentaldate;
 
-    private LocalDate returnprevisiondate;
+    private LocalDate previsiondate;
 
     private LocalDate returndate;
 

@@ -22,11 +22,15 @@ public interface BookControllerDocs {
 
     @ApiOperation(value = "Listar Todos os Livros")
     @GetMapping
-    ResponseEntity<List<BookResponse>> findAllNotDeleted();
+    ResponseEntity<List<BookResponse>> findAll();
 
     @ApiOperation(value = "Listar Livro(Id)")
     @GetMapping("/{id}")
     ResponseEntity<BookResponse> findById(@PathVariable Long id);
+
+    @ApiOperation(value = "Listar Livros Disponiveis")
+    @GetMapping("/AvailableBooks")
+    ResponseEntity<List<BookResponse>> findAllAvailableBooks();
 
     @ApiOperation(value = "Criar Novo Livro")
     @PostMapping

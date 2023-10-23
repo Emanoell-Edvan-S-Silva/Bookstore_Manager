@@ -1,7 +1,7 @@
 package wdabookstore.bookstoremanager.status;
 
 public enum RentalStatus {
-    PENDENTE,
-    ATRASADO,
-    DEVOLVIDO
+    PENDENT,
+    LATE_TIME,
+    ON_TIME
 }

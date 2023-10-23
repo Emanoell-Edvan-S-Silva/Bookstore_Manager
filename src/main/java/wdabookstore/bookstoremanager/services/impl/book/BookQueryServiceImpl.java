@@ -25,7 +25,10 @@ public class BookQueryServiceImpl implements BookQueryService {
         return bookRepository.findAllByDeletedFalse();
     }
 
-
+    @Override
+    public List<BookEntity> findAllAvailableBooks() {
+        return bookRepository.findByAmountGreaterThanAndDeletedIsFalse(0);
+    }
 
     @Override
     public BookEntity findById(Long id){

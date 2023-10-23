@@ -18,7 +18,7 @@ public class DeleteErrorExceptionHandler {
     @ExceptionHandler(DeleteErrorException.class)
     public ResponseEntity<Object> handleEntityDeleteErrorException(Exception ex, WebRequest request) {
         List<String> objectProblems = Collections.emptyList();
-        return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.NOT_FOUND,
-                ErrorMessageBuilder.buildProblem(HttpStatus.NOT_FOUND, ProblemType.RESOURCE_NOT_FOUND, ex.getMessage(), objectProblems));
+        return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.BAD_REQUEST,
+                ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST, ProblemType.RESOURCE_NOT_FOUND, ex.getMessage(), objectProblems));
     }
 }

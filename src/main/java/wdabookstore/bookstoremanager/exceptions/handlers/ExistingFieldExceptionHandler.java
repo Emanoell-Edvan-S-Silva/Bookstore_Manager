@@ -18,8 +18,8 @@ public class ExistingFieldExceptionHandler {
     @ExceptionHandler(ExistingFieldExceptions.class)
     public ResponseEntity<Object> handleEntityExistsException(ExistingFieldExceptions exception){
         List<String> objectProblems = Collections.singletonList(exception.getMessage());
-        return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.NOT_FOUND,
-                ErrorMessageBuilder.buildProblem(HttpStatus.NOT_FOUND,
+        return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.BAD_REQUEST,
+                ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST,
                         ProblemType.DUPLICATE_FIELD,
                         "Existe Campos se repetindo",
                         objectProblems));

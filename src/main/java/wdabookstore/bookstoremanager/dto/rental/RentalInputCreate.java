@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class RentalInputCreate {
     @NotNull(message = "Campo não informado!")
-    private LocalDate returnprevisiondate;
+    private LocalDate previsiondate;
 
     @NotNull(message = "Campo não informado!")
     private Long userId;

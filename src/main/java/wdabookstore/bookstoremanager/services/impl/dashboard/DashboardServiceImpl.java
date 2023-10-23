@@ -1,9 +1,7 @@
 package wdabookstore.bookstoremanager.services.impl.dashboard;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import wdabookstore.bookstoremanager.dto.user.UserResponse;
 import wdabookstore.bookstoremanager.entities.BookEntity;
 import wdabookstore.bookstoremanager.entities.PublisherEntity;
 import wdabookstore.bookstoremanager.entities.RentalEntity;
@@ -12,11 +10,8 @@ import wdabookstore.bookstoremanager.repositories.BookRepository;
 import wdabookstore.bookstoremanager.repositories.PublisherRepository;
 import wdabookstore.bookstoremanager.repositories.RentalRepository;
 import wdabookstore.bookstoremanager.repositories.UserRepository;
-import wdabookstore.bookstoremanager.services.interfaces.book.BookQueryService;
 import wdabookstore.bookstoremanager.services.interfaces.dashboard.DashboardService;
-import wdabookstore.bookstoremanager.services.interfaces.publisher.PublisherQueryService;
-import wdabookstore.bookstoremanager.services.interfaces.rental.RentalQueryService;
-import wdabookstore.bookstoremanager.services.interfaces.user.UserQueryService;
+import wdabookstore.bookstoremanager.status.RentalStatus;
 
 import java.util.List;
 
@@ -65,6 +60,20 @@ public class DashboardServiceImpl implements DashboardService {
         return rentalRepository.findUserWithMostRentals();
     }
 
+    @Override
+    public List<RentalEntity> findOnTimeRentals(){
+        return rentalRepository.findByStatus(RentalStatus.ON_TIME);
+    }
+
+    @Override
+    public List<RentalEntity> findLateRentals(){
+        return rentalRepository.findByStatus(RentalStatus.LATE_TIME);
+    }
+
+    @Override
+    public List<RentalEntity> findOutstandingRentals() {
+        return rentalRepository.findByStatus(RentalStatus.PENDENT);
+    }
 
 
 

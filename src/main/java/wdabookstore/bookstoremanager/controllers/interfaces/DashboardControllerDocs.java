@@ -43,4 +43,16 @@ public interface DashboardControllerDocs {
     @ApiOperation(value = "Usuário que mais Alugou")
     @GetMapping("/UserWithMostRentals")
     ResponseEntity<UserResponse> findUserWithMostRentals();
+
+    @ApiOperation(value = "Todos Alugueis Entregues no Prazo")
+    @GetMapping("/OnTimeRentals")
+    ResponseEntity<List<RentalResponse>> findOnTimeRentals();
+
+    @ApiOperation(value = "Todos Alugueis Entregues com atraso")
+    @GetMapping("/LateRentals")
+    ResponseEntity<List<RentalResponse>> findLateRentals();
+
+    @ApiOperation(value = "Todos Aluguéis Pendentes")
+    @GetMapping("/OutstandingRentals")
+    ResponseEntity<List<RentalResponse>> findOutstandingRentals();
 }

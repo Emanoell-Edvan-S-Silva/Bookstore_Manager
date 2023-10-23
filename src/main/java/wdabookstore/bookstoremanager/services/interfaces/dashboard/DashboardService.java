@@ -20,4 +20,10 @@ public interface DashboardService {
     List<BookEntity> findTop4MostLeasedBooks();
 
     UserEntity findUserWithMostRentals();
+
+    List<RentalEntity> findOnTimeRentals();
+
+    List<RentalEntity> findLateRentals();
+
+    List<RentalEntity> findOutstandingRentals();
 }

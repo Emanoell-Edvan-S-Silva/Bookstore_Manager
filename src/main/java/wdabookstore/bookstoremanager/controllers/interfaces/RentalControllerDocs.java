@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.dto.rental.RentalInputCreate;
-import wdabookstore.bookstoremanager.dto.rental.RentalExtendRent;
 import wdabookstore.bookstoremanager.dto.rental.RentalResponse;
 
 import javax.validation.Valid;
@@ -19,13 +18,9 @@ import java.util.List;
 @Api(tags = "Rental-Actions")
 public interface RentalControllerDocs {
 
-    @ApiOperation(value = "Listar Aluguéis Pendentes")
-    @GetMapping("/OutstandingRentals")
-    ResponseEntity<List<RentalResponse>> getOutstandingRentals();
-
-    @ApiOperation(value = "Listar Aluguéis Entregues")
-    @GetMapping("/HandedOutRentals")
-    ResponseEntity<List<RentalResponse>> getHandedOut();
+    @ApiOperation(value = "Listar Todos Aluguéis")
+    @GetMapping
+    ResponseEntity<List<RentalResponse>> findAllRentals();
 
     @ApiOperation(value = "Listar Aluguel(Id)")
     @GetMapping("/{id}")
@@ -39,9 +34,6 @@ public interface RentalControllerDocs {
     @PutMapping("/Finalize/{id}")
     ResponseEntity<Void> finalizeRent(@Valid @RequestBody Long id);
 
-    @ApiOperation(value = "Estender Aluguel")
-    @PutMapping("/Extend")
-    ResponseEntity<Void> extendRent(@Valid @RequestBody RentalExtendRent rent);
 
     @ApiOperation(value = "Deletar Aluguel")
     @DeleteMapping("/{id}")

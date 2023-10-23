@@ -8,11 +8,7 @@ import java.util.List;
 
 public interface RentalQueryService {
 
-    List<RentalEntity> findHandedOutRentals();
-
-    List<RentalEntity> getOutstandingRentals();
-
-    List<RentalEntity> getDeletedRentals();
+    List<RentalEntity> findAllRentals();
 
     RentalEntity findById(Long id);
 

@@ -30,7 +30,7 @@ public class PublisherQueryServiceImpl implements PublisherQueryService {
 
     @Override
     public boolean publisherNameExist(String name){
-        return this.publisherRepository.existsByName(name);
+        return this.publisherRepository.existsByNameAndDeletedFalse(name);
     }
 
 }

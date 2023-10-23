@@ -2,6 +2,7 @@ package wdabookstore.bookstoremanager.controllers.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wdabookstore.bookstoremanager.controllers.interfaces.DashboardControllerDocs;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/api/Dashboard")
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 public class DashboardController implements DashboardControllerDocs {
 
     @Autowired
@@ -92,5 +94,32 @@ public class DashboardController implements DashboardControllerDocs {
         UserEntity userEntity = dashboardService.findUserWithMostRentals();
         UserResponse userResponse = userMapper.mapperEntityToOutput(userEntity);
         return ResponseEntity.ok().body(userResponse);
+    }
+
+    @Override
+    public ResponseEntity<List<RentalResponse>> findOnTimeRentals(){
+        List<RentalEntity> rentalEntities = dashboardService.findOnTimeRentals();
+        List<RentalResponse> rental = rentalEntities.stream()
+                .map(rentalMapper::mapperEntityToOutput)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(rental);
+    }
+
+    @Override
+    public ResponseEntity<List<RentalResponse>> findLateRentals(){
+        List<RentalEntity> rentalEntities = dashboardService.findLateRentals();
+        List<RentalResponse> rental = rentalEntities.stream()
+                .map(rentalMapper::mapperEntityToOutput)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(rental);
+    }
+
+    @Override
+    public ResponseEntity<List<RentalResponse>> findOutstandingRentals(){
+        List<RentalEntity> rentalEntities = dashboardService.findOutstandingRentals();
+        List<RentalResponse> rental = rentalEntities.stream()
+                .map(rentalMapper::mapperEntityToOutput)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(rental);
     }
 }

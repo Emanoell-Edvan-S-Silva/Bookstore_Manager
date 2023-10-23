@@ -15,6 +15,11 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 
     List<BookEntity> findAllByDeletedFalse();
 
+    List<BookEntity> findByAmountGreaterThanAndDeletedIsFalse(int amount);
+
+    @Query(value = "SELECT * FROM tb_books ORDER BY total_leased DESC LIMIT 4", nativeQuery = true)
+    List<BookEntity> findTop4MostLeasedBooks();
+
     @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_books WHERE name = :name AND publisher_entity_id = :publisherId AND deleted = false)", nativeQuery = true)
     boolean existsByNameAndPublisherEntityId(String name, Long publisherId);
 
@@ -23,9 +28,4 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 
     @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_books WHERE id = :BookId AND amount > :newAmount AND deleted = false)", nativeQuery = true)
     boolean existsByIdAndAmountGreaterThan(Long BookId, Integer newAmount);
-
-    @Query(value = "SELECT * FROM tb_books ORDER BY total_leased DESC LIMIT 4", nativeQuery = true)
-    List<BookEntity> findTop4MostLeasedBooks();
-
-
 }

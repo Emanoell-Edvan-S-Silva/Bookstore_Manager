@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wdabookstore.bookstoremanager.dto.rental.RentalInputCreate;
-import wdabookstore.bookstoremanager.dto.rental.RentalExtendRent;
 import wdabookstore.bookstoremanager.entities.BookEntity;
 import wdabookstore.bookstoremanager.entities.RentalEntity;
 import wdabookstore.bookstoremanager.entities.UserEntity;
@@ -19,7 +18,6 @@ import wdabookstore.bookstoremanager.services.interfaces.rental.RentalQueryServi
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 
 @SuppressWarnings("unused")
 @Service
@@ -37,6 +35,7 @@ public class RentalCommandServiceImpl implements RentalCommandService {
     RentalQueryService rentalQueryService;
 
     LocalDate datenow = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
+
     @Transactional
     @Override
     public void create(RentalInputCreate rentalInputCreate) {
@@ -55,18 +54,6 @@ public class RentalCommandServiceImpl implements RentalCommandService {
         book.setTotal_leased(book.getTotal_leased() + 1);
         rentalRepository.save(rent);
         bookRepository.save(book);
-    }
-
-    @Transactional
-    @Override
-    public void extendRent (@Valid RentalExtendRent rentalExtendRent) {
-        RentalEntity rent = rentalQueryService.findById(rentalExtendRent.getId());
-        long daysDifference = ChronoUnit.DAYS.between(rent.getRentaldate(), rentalExtendRent.getReturnprevisiondate());
-        if (daysDifference > 30) {
-            throw new ExistingFieldExceptions("A diferença entre a data de previsão e a data de aluguel deve ser menor que 30 dias.");
-        }
-        rent.setReturnprevisiondate(rentalExtendRent.getReturnprevisiondate());
-        rentalRepository.save(rent);
     }
 
     @Transactional

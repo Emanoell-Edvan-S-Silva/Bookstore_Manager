@@ -3,13 +3,9 @@ package wdabookstore.bookstoremanager.controllers.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.controllers.interfaces.RentalControllerDocs;
 import wdabookstore.bookstoremanager.dto.rental.RentalInputCreate;
-import wdabookstore.bookstoremanager.dto.rental.RentalExtendRent;
 import wdabookstore.bookstoremanager.dto.rental.RentalResponse;
 import wdabookstore.bookstoremanager.entities.RentalEntity;
 import wdabookstore.bookstoremanager.mappers.RentalMapper;
@@ -23,6 +19,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/api/Rentals")
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 public class RentalController implements RentalControllerDocs {
     @Autowired
     RentalQueryService rentalQueryService;
@@ -33,20 +30,11 @@ public class RentalController implements RentalControllerDocs {
     @Autowired
     RentalMapper rentalMapper;
 
-    @Override
-    public ResponseEntity<List<RentalResponse>> getOutstandingRentals() {
-        rentalQueryService.updateRentStatus();
-        List<RentalEntity> rentEntities = rentalQueryService.getOutstandingRentals();
-        List<RentalResponse> rent = rentEntities.stream()
-                .map(rentalMapper::mapperEntityToOutput)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok().body(rent);
-    }
 
     @Override
-    public ResponseEntity<List<RentalResponse>> getHandedOut() {
+    public ResponseEntity<List<RentalResponse>> findAllRentals() {
         rentalQueryService.updateRentStatus();
-        List<RentalEntity> rentEntities = rentalQueryService.findHandedOutRentals();
+        List<RentalEntity> rentEntities = rentalQueryService.findAllRentals();
         List<RentalResponse> rent = rentEntities.stream()
                 .map(rentalMapper::mapperEntityToOutput)
                 .collect(Collectors.toList());
@@ -64,12 +52,6 @@ public class RentalController implements RentalControllerDocs {
     public ResponseEntity<Void> create(@Valid @RequestBody RentalInputCreate rent){
         rentalCommandService.create(rent);
         return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @Override
-    public ResponseEntity<Void> extendRent(@Valid @RequestBody RentalExtendRent rent){
-        rentalCommandService.extendRent(rent);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override

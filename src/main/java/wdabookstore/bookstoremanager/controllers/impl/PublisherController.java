@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/api/Publishers")
+@CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
 public class PublisherController implements PublisherControllerDocs {
     @Autowired
     private PublisherMapper publisherMapper;
@@ -33,7 +34,7 @@ public class PublisherController implements PublisherControllerDocs {
     private PublisherCommandService publisherCommandService;
 
     @Override
-    public ResponseEntity<List<PublisherResponse>> findAllNotDeleted(){
+    public ResponseEntity<List<PublisherResponse>> findAll(){
         List<PublisherEntity> publishersEntities = publisherQueryServices.findAllNotDeleted();
         List<PublisherResponse> publishers = publishersEntities.stream()
                 .map(publisherMapper::mapperEntityToOutput)

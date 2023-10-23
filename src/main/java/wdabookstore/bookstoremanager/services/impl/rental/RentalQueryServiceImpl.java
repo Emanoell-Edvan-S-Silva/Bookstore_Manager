@@ -26,20 +26,11 @@ public class RentalQueryServiceImpl implements RentalQueryService {
     @Autowired
     RentalRepository rentalRepository;
 
-
-
     @Override
-    public List<RentalEntity> findHandedOutRentals() {
-        return rentalRepository.findHandedOutRentals();
+    public List<RentalEntity> findAllRentals() {
+        return rentalRepository.findByDeletedFalse();
     }
 
-    @Override
-    public List<RentalEntity> getOutstandingRentals() {
-        return rentalRepository.findOutstandingRentals();
-    }
-
-    @Override
-    public List<RentalEntity> getDeletedRentals() { return rentalRepository.findDeletedRentals(); }
 
     @Override
     public RentalEntity findById(Long id){
@@ -53,11 +44,11 @@ public class RentalQueryServiceImpl implements RentalQueryService {
 
         for (RentalEntity rent : rents) {
             if (rent.getReturndate() == null) {
-                rent.setStatus(RentalStatus.PENDENTE);
-            } else if (rent.getReturnprevisiondate().isAfter(rent.getReturndate())) {
-                rent.setStatus(RentalStatus.DEVOLVIDO);
+                rent.setStatus(RentalStatus.PENDENT);
+            } else if (rent.getPrevisiondate().isAfter(rent.getReturndate())) {
+                rent.setStatus(RentalStatus.ON_TIME);
             } else {
-                rent.setStatus(RentalStatus.ATRASADO);
+                rent.setStatus(RentalStatus.LATE_TIME);
             }
             rentalRepository.save(rent);
         }

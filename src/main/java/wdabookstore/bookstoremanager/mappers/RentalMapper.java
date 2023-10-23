@@ -3,7 +3,6 @@ package wdabookstore.bookstoremanager.mappers;
 import org.springframework.stereotype.Component;
 import wdabookstore.bookstoremanager.dto.book.BookRelatedAnswer;
 import wdabookstore.bookstoremanager.dto.rental.RentalInputCreate;
-import wdabookstore.bookstoremanager.dto.rental.RentalExtendRent;
 import wdabookstore.bookstoremanager.dto.rental.RentalResponse;
 import wdabookstore.bookstoremanager.dto.user.UserRelatedAnswer;
 import wdabookstore.bookstoremanager.entities.BookEntity;
@@ -23,7 +22,7 @@ public class RentalMapper {
         RentalResponse outputDTO = new RentalResponse();
         outputDTO.setId(entity.getId());
         outputDTO.setRentaldate(entity.getRentaldate());
-        outputDTO.setReturnprevisiondate(entity.getReturnprevisiondate());
+        outputDTO.setPrevisiondate(entity.getPrevisiondate());
         outputDTO.setReturndate(entity.getReturndate());
         outputDTO.setStatus(entity.getStatus());
         outputDTO.setBook(toBookOutput(entity.getBookEntity()));
@@ -34,20 +33,14 @@ public class RentalMapper {
     public RentalEntity mapperInputToEntityCreate(RentalInputCreate rentalInputCreate, BookEntity bookEntity, UserEntity userEntity){
         RentalEntity entity = new RentalEntity();
         entity.setRentaldate(datenow);
-        entity.setReturnprevisiondate(rentalInputCreate.getReturnprevisiondate());
-        entity.setStatus(RentalStatus.PENDENTE);
+        entity.setPrevisiondate(rentalInputCreate.getPrevisiondate());
+        entity.setStatus(RentalStatus.PENDENT);
         entity.setBookEntity(bookEntity);
         entity.setUserEntity(userEntity);
         entity.setDeleted(false);
         return entity;
     }
 
-    public RentalEntity mapperInputToEntityUpdate(RentalExtendRent rentalExtendRent){
-        RentalEntity entity = new RentalEntity();
-        entity.setId(rentalExtendRent.getId());
-        entity.setReturnprevisiondate(rentalExtendRent.getReturnprevisiondate());
-        return entity;
-    }
 
     public BookRelatedAnswer toBookOutput(BookEntity bookEntity){
         BookRelatedAnswer outputDTO = new BookRelatedAnswer();
