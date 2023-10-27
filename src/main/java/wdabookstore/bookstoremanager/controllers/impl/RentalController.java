@@ -1,5 +1,6 @@
 package wdabookstore.bookstoremanager.controllers.impl;
 
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +50,7 @@ public class RentalController implements RentalControllerDocs {
     }
 
     @Override
-    public ResponseEntity<Void> create(@Valid @RequestBody RentalInputCreate rent){
+    public ResponseEntity<Void> create(@ApiParam(name = "Rental", value = "Representation of a new Rental", required = true) @Valid @RequestBody RentalInputCreate rent){
         rentalCommandService.create(rent);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

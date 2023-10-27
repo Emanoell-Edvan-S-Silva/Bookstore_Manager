@@ -1,5 +1,6 @@
 package wdabookstore.bookstoremanager.controllers.impl;
 
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,13 +50,13 @@ public class UserController implements UserControllerDocs {
     }
 
     @Override
-    public ResponseEntity<Void> create(@Valid @RequestBody UserInputCreate user){
+    public ResponseEntity<Void> create(@ApiParam(name = "User", value = "Representation of a new User", required = true) @Valid @RequestBody UserInputCreate user){
         userCommandService.create(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<Void> update(@Valid @RequestBody UserInputUpdate user){
+    public ResponseEntity<Void> update(@ApiParam(name = "User", value = "Representation of User modification", required = true)@Valid @RequestBody UserInputUpdate user){
         userCommandService.update(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }

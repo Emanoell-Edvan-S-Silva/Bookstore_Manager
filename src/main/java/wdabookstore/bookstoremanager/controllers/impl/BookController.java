@@ -1,5 +1,6 @@
 package wdabookstore.bookstoremanager.controllers.impl;
 
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,13 +58,13 @@ public class BookController implements BookControllerDocs {
     }
 
     @Override
-    public ResponseEntity<Void> create(@Valid @RequestBody BookInputCreate book){
+    public ResponseEntity<Void> create(@ApiParam(name = "Book", value = "Representation of a new book", required = true) @Valid @RequestBody BookInputCreate book){
         bookCommandService.create(book);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<Void> update(@Valid @RequestBody BookInputUpdate book){
+    public ResponseEntity<Void> update(@ApiParam(name = "Book", value = "Representation of book modification", required = true) @Valid @RequestBody BookInputUpdate book){
         bookCommandService.update(book);
         return new ResponseEntity<>(HttpStatus.OK);
     }

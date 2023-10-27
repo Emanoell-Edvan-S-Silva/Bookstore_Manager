@@ -1,5 +1,6 @@
 package wdabookstore.bookstoremanager.controllers.impl;
 
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,13 +51,13 @@ public class PublisherController implements PublisherControllerDocs {
     }
 
     @Override
-    public ResponseEntity<Void> create(@Valid @RequestBody PublisherInputCreate publisher){
+    public ResponseEntity<Void> create( @ApiParam(name = "Publisher", value = "Representation of a new Publisher", required = true) @Valid @RequestBody PublisherInputCreate publisher){
         publisherCommandService.create(publisher);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<Void> update(@Valid @RequestBody PublisherInputUpdate publisher){
+    public ResponseEntity<Void> update(@ApiParam(name = "Publisher", value = "Representation of Publisher modification", required = true) @Valid @RequestBody PublisherInputUpdate publisher){
         publisherCommandService.update(publisher);
         return new ResponseEntity<>(HttpStatus.OK);
     }

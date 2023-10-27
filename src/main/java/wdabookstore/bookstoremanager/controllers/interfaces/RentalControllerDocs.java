@@ -1,9 +1,6 @@
 package wdabookstore.bookstoremanager.controllers.interfaces;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.dto.rental.RentalInputCreate;
@@ -27,8 +24,9 @@ public interface RentalControllerDocs {
     ResponseEntity<RentalResponse> findById(@PathVariable Long id);
 
     @ApiOperation(value = "Criar Novo Aluguel")
+
     @PostMapping
-    ResponseEntity<Void> create(@Valid @RequestBody RentalInputCreate rentalInputCreate);
+    ResponseEntity<Void> create(@ApiParam(name = "Rental", value = "Representation of a new Rental", required = true) @Valid @RequestBody RentalInputCreate rentalInputCreate);
 
     @ApiOperation(value = "Finalizar Aluguel")
     @PutMapping("/Finalize/{id}")

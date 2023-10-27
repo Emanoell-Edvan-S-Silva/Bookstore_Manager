@@ -1,9 +1,6 @@
 package wdabookstore.bookstoremanager.controllers.interfaces;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.dto.publisher.PublisherInputCreate;
@@ -30,11 +27,11 @@ public interface PublisherControllerDocs {
 
     @ApiOperation(value = "Criar Editora")
     @PostMapping
-    ResponseEntity<Void> create(@Valid @RequestBody PublisherInputCreate publisher);
+    ResponseEntity<Void> create( @ApiParam(name = "Publisher", value = "Representation of a new Publisher", required = true) @Valid @RequestBody PublisherInputCreate publisher);
 
     @ApiOperation(value = "Atualizar Editora")
     @PutMapping
-    ResponseEntity<Void> update(@Valid @RequestBody PublisherInputUpdate publisher);
+    ResponseEntity<Void> update(@ApiParam(name = "Publisher", value = "Representation of Publisher modification", required = true) @Valid @RequestBody PublisherInputUpdate publisher);
 
     @ApiOperation(value = "Deletar Editora")
     @DeleteMapping("/{id}")

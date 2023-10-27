@@ -1,9 +1,6 @@
 package wdabookstore.bookstoremanager.controllers.interfaces;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.dto.user.UserInputCreate;
@@ -29,11 +26,11 @@ public interface UserControllerDocs {
 
     @ApiOperation(value = "Criar Novo Usuário")
     @PostMapping
-    ResponseEntity<Void> create(@Valid @RequestBody UserInputCreate user);
+    ResponseEntity<Void> create(@ApiParam(name = "User", value = "Representation of a new User", required = true) @Valid @RequestBody UserInputCreate user);
 
     @ApiOperation(value = "Atualizar Usuário")
     @PutMapping
-    ResponseEntity<Void> update(@Valid @RequestBody UserInputUpdate user);
+    ResponseEntity<Void> update(@ApiParam(name = "User", value = "Representation of User modification", required = true)@Valid @RequestBody UserInputUpdate user);
 
     @ApiOperation(value = "Deletar Usuário")
     @DeleteMapping("/{id}")

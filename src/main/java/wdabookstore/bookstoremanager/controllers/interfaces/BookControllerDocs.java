@@ -1,9 +1,6 @@
 package wdabookstore.bookstoremanager.controllers.interfaces;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wdabookstore.bookstoremanager.dto.book.BookInputCreate;
@@ -34,11 +31,11 @@ public interface BookControllerDocs {
 
     @ApiOperation(value = "Criar Novo Livro")
     @PostMapping
-    ResponseEntity<Void> create(@Valid @RequestBody BookInputCreate Book);
+    ResponseEntity<Void> create(@ApiParam(name = "Book", value = "Representation of a new book", required = true) @Valid @RequestBody BookInputCreate Book);
 
     @ApiOperation(value = "Atualizar Livro")
     @PutMapping
-    ResponseEntity<Void> update(@Valid @RequestBody BookInputUpdate publisher);
+    ResponseEntity<Void> update(@ApiParam(name = "Book", value = "Representation of book modification", required = true) @Valid @RequestBody BookInputUpdate publisher);
 
     @ApiOperation(value = "Deletar Livro")
     @DeleteMapping("/{id}")
