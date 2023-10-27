@@ -9,8 +9,8 @@ public enum ProblemType {
     INVALID_PARAMETER("/invalid-parameter", "ProblemType.Title.InvalidParameter"),
     MALFORMED_BODY("/malformed-body", "ProblemType.Title.MalformedBody"),
     RESOURCE_NOT_FOUND("/resource-not-found", "ProblemType.Title.ResourceNotFound"),
-    SYSTEM_ERROR("/system-error", "ProblemType.Title.SystemError"),
-
+    INVALID_DATE_INPUT("/invalid-date-input", "ProblemType.Title.InvalidDateInput"),
+    RENTAL_FINISH_ERROR("/rental-finish-error", "ProblemType.Title.RentalFinishError"),
 
     UNAUTHORIZED("/unauthorized", "ProblemType.Title.Unauthorized");
 

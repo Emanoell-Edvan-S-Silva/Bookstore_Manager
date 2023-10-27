@@ -1,14 +1,12 @@
 package wdabookstore.bookstoremanager.exceptions.handlers;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
-import wdabookstore.bookstoremanager.exceptions.error_message.ErrorMessageModel;
-import wdabookstore.bookstoremanager.exceptions.error_message.ProblemType;
 import wdabookstore.bookstoremanager.exceptions.error_message.ErrorMessageBuilder;
+import wdabookstore.bookstoremanager.exceptions.error_message.ProblemType;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Collections;

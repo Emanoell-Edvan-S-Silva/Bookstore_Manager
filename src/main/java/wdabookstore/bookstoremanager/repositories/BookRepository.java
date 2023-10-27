@@ -13,7 +13,7 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 
     Optional<BookEntity> findByIdAndDeletedFalse(Long id);
 
-    List<BookEntity> findAllByDeletedFalse();
+    List<BookEntity> findByDeletedFalse();
 
     List<BookEntity> findByAmountGreaterThanAndDeletedIsFalse(int amount);
 

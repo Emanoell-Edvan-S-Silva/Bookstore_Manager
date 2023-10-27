@@ -26,10 +26,10 @@ public class GeneralBookstoreExceptionHandler extends ResponseEntityExceptionHan
             WebRequest request) {
         List<String> errors = new ArrayList<>();
         exception.getBindingResult().getFieldErrors().forEach(fieldError -> errors.add(
-                fieldError.getField().toUpperCase() + ": " + fieldError.getDefaultMessage())
+                fieldError.getDefaultMessage())
         );
         exception.getBindingResult().getGlobalErrors().forEach(globalErrors -> errors.add(
-                "Object " + globalErrors.getObjectName() + " " + globalErrors.getDefaultMessage())
+                globalErrors.getDefaultMessage())
         );
 
         return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.BAD_REQUEST,

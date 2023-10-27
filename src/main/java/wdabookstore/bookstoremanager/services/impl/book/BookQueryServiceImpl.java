@@ -22,7 +22,7 @@ public class BookQueryServiceImpl implements BookQueryService {
 
     @Override
     public List<BookEntity> findAllNotDeleted() {
-        return bookRepository.findAllByDeletedFalse();
+        return bookRepository.findByDeletedFalse();
     }
 
     @Override

@@ -13,12 +13,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RentalInputCreate {
-    @NotNull(message = "Campo não informado!")
+    @NotNull(message = "Data de Previsão não foi informadoa")
     private LocalDate previsiondate;
 
-    @NotNull(message = "Campo não informado!")
+    @NotNull(message = "Id do Usuario não foi informado!")
     private Long userId;
 
-    @NotNull(message = "Campo não informado!")
+    @NotNull(message = "Id do Livro não foi informado!")
     private Long bookId;
 }

@@ -15,13 +15,13 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class PublisherInputCreate {
 
-    @NotBlank(message = "Campo não informado!")
-    @Size(min = 4,max = 100, message = "O campo nome deve ter entre 4 e 100 caracteres")
+    @NotBlank(message = "Nome da Editora não foi informado!")
+    @Size(min = 4,max = 100, message = "O Nome da editora deve ter entre 4 e 100 caracteres")
     @ApiModelProperty(required = true)
     private  String name;
 
-    @NotBlank(message = "Campo não informado!")
-    @Size(min = 4,max = 100, message = "O campo de deve ter entre 4 e 100 caracteres")
+    @NotBlank(message = "Cidade não foi informado!")
+    @Size(min = 4,max = 100, message = "A cidade de deve ter entre 4 e 100 caracteres")
     @ApiModelProperty(required = true)
     private String city;
 }

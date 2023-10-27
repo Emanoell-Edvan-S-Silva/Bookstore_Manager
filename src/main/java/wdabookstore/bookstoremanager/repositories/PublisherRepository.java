@@ -15,6 +15,6 @@ public interface PublisherRepository extends JpaRepository<PublisherEntity, Long
 
     Optional<PublisherEntity> findByIdAndDeletedFalse(Long id);
 
-    List<PublisherEntity> findAllByDeletedFalse();
+    List<PublisherEntity> findByDeletedFalse();
 
 }

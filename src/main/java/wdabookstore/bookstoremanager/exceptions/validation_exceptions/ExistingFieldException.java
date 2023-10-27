@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-public class ExistingFieldExceptions extends RuntimeException{
-    public ExistingFieldExceptions(String message){
+public class ExistingFieldException extends RuntimeException{
+    public ExistingFieldException(String message){
         super(message);
     }
 }

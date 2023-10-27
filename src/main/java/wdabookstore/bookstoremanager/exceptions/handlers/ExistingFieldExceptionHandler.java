@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import wdabookstore.bookstoremanager.exceptions.error_message.ErrorMessageBuilder;
 import wdabookstore.bookstoremanager.exceptions.error_message.ProblemType;
-import wdabookstore.bookstoremanager.exceptions.validation_exceptions.ExistingFieldExceptions;
+import wdabookstore.bookstoremanager.exceptions.validation_exceptions.ExistingFieldException;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,8 +15,8 @@ import java.util.List;
 @RestControllerAdvice
 public class ExistingFieldExceptionHandler {
 
-    @ExceptionHandler(ExistingFieldExceptions.class)
-    public ResponseEntity<Object> handleEntityExistsException(ExistingFieldExceptions exception){
+    @ExceptionHandler(ExistingFieldException.class)
+    public ResponseEntity<Object> handleEntityExistsException(ExistingFieldException exception){
         List<String> objectProblems = Collections.singletonList(exception.getMessage());
         return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.BAD_REQUEST,
                 ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST,

@@ -17,16 +17,16 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookInputUpdate {
-    @NotNull(message = "Campo não Informado")
+    @NotNull(message = "ID do livro não foi informado!")
     private Long id;
 
-    @NotBlank(message = "Campo não informado!")
+    @NotBlank(message = "Nome do Livro não foi informado!")
     @Size(min = 4,max = 100, message = "O campo nome deve ter entre 4 e 100 caracteres")
     @ApiModelProperty(required = true)
     private String name;
 
-    @NotBlank(message = "Campo não informado!")
-    @Size(min = 4,max = 100, message = "O campo nome deve ter entre 4 e 100 caracteres")
+    @NotBlank(message = "Autor não foi informado!")
+    @Size(min = 4,max = 100, message = "O campo Autor deve ter entre 4 e 100 caracteres")
     @ApiModelProperty(required = true)
     private String author;
 
@@ -35,11 +35,11 @@ public class BookInputUpdate {
     @ApiModelProperty(required = true)
     private Integer launch;
 
-    @NotNull(message = "Campo não informado!")
-    @Min(value = 1, message = "O valor deve ser maior que 0")
+    @NotNull(message = "Quantidade em estoque não foi informado!")
+    @Min(value = 1, message = "A quantidade em estoque deve ser maior que 0")
     private int amount;
 
-    @NotNull(message = "Campo não informado!")
+    @NotNull(message = "ID da editora não foi informado!")
     private Long publisherId;
 
 }

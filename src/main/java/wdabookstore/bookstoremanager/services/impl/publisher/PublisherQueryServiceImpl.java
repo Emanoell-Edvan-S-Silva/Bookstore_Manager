@@ -18,7 +18,7 @@ public class PublisherQueryServiceImpl implements PublisherQueryService {
 
     @Override
     public List<PublisherEntity> findAllNotDeleted() {
-        return publisherRepository.findAllByDeletedFalse();
+        return publisherRepository.findByDeletedFalse();
     }
 
 

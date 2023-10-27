@@ -34,20 +34,20 @@ public class DashboardServiceImpl implements DashboardService {
 
     @Override
     public List<BookEntity> findAllBooks() {
-        return bookRepository.findAll();
+        return bookRepository.findByDeletedFalse();
     }
 
     @Override
     public List<PublisherEntity> findAllPublisher() {
-        return publisherRepository.findAll();
+        return publisherRepository.findByDeletedFalse();
     }
 
     @Override
-    public List<RentalEntity> findAllRentals(){ return rentalRepository.findAll(); }
+    public List<RentalEntity> findAllRentals(){ return rentalRepository.findByDeletedFalse(); }
 
     @Override
     public List<UserEntity> findAllUsers(){
-        return userRepository.findAll();
+        return userRepository.findAllByDeletedFalse();
     }
 
     @Override
