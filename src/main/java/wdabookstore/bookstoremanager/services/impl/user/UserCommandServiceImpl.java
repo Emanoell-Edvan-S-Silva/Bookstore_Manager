@@ -48,7 +48,6 @@ public class UserCommandServiceImpl implements UserCommandService {
         userValidations.validateUpdate(userInputUpdate);
         UserEntity user = userMapper.mapperInputToEntityUpdate(userInputUpdate);
         userRepository.save(user);
-        userMapper.mapperEntityToOutput(user);
     }
 
     @Override

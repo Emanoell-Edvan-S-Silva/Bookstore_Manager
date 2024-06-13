@@ -17,8 +17,7 @@ import java.util.List;
 public class EntityNotFoundExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Object> handleEntityNotFoundException(Exception ex, WebRequest request) {
-        List<String> objectProblems = Collections.emptyList();
         return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.NOT_FOUND,
-                ErrorMessageBuilder.buildProblem(HttpStatus.NOT_FOUND, ProblemType.RESOURCE_NOT_FOUND, ex.getMessage(), objectProblems));
+                ErrorMessageBuilder.buildProblem(HttpStatus.NOT_FOUND, ProblemType.RESOURCE_NOT_FOUND, "Entidade não existe", Collections.singletonList(ex.getMessage())));
     }
 }

@@ -29,8 +29,8 @@ public class PublisherQueryServiceImpl implements PublisherQueryService {
     }
 
     @Override
-    public boolean publisherNameExist(String name){
-        return this.publisherRepository.existsByNameAndDeletedFalse(name);
+    public boolean publisherNameExists(String name){
+        return this.publisherRepository.existsByNameIgnoreCaseAndDeletedFalse(name);
     }
 
 }

@@ -18,8 +18,7 @@ import java.util.List;
 public class BusinessErrorExceptionHandler {
     @ExceptionHandler(BusinessErrorException.class)
     public ResponseEntity<Object> handleEntityDeleteErrorException(Exception ex, WebRequest request) {
-        List<String> objectProblems = Collections.emptyList();
         return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.BAD_REQUEST,
-                ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST, ProblemType.BUSINESS_ERROR, ex.getMessage(), objectProblems));
+                ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST, ProblemType.BUSINESS_ERROR, "Ouve um erro na Regra de negocios", Collections.singletonList(ex.getMessage())));
     }
 }

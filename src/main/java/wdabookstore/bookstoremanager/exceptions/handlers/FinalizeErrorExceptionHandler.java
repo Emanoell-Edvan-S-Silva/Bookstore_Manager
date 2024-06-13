@@ -18,8 +18,7 @@ import java.util.List;
 public class FinalizeErrorExceptionHandler {
     @ExceptionHandler(FinalizeErrorException.class)
     public ResponseEntity<Object> handleEntityDeleteErrorException(Exception ex, WebRequest request) {
-        List<String> objectProblems = Collections.emptyList();
         return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.BAD_REQUEST,
-                ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST, ProblemType.RENTAL_FINISH_ERROR, ex.getMessage(), objectProblems));
+                ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST, ProblemType.RENTAL_FINISH_ERROR, "Não foi possivel finalizar aluguel", Collections.singletonList(ex.getMessage())));
     }
 }

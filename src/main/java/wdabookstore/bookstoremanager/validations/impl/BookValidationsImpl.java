@@ -51,14 +51,16 @@ public class BookValidationsImpl implements BookValidations {
     }
 
     private void validateNameUniqueness(String name, Long publisherId) {
-        if (bookRepository.existsByNameAndPublisherEntityId(name, publisherId)) {
+        name = name.trim();
+        if (bookRepository.existsByNameIgnoreCaseAndPublisherEntityId(name, publisherId)) {
             PublisherEntity publisher = bookQueryService.findPublisher(publisherId);
             throw new ExistingFieldException("Não foi possível criar, pois " + name + " já existe na editora " + publisher.getName());
         }
     }
 
     private void validateNameUniqueness(String name, Long publisherId, Long bookId) {
-        if (bookRepository.existsByNameAndPublisherEntityIdAndIdNot(name, publisherId, bookId)) {
+        name = name.trim();
+        if (bookRepository.existsByNameIgnoreCaseAndPublisherEntityIdAndIdNot(name, publisherId, bookId)) {
             PublisherEntity publisher = bookQueryService.findPublisher(publisherId);
             throw new ExistingFieldException("Não foi possível Editar, pois " + name + " já existe na editora " + publisher.getName());
         }

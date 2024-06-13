@@ -18,7 +18,7 @@ public class PublisherEntity {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private  String name;
+    private String name;
 
     @Column(nullable = false, length = 100)
     private String city;

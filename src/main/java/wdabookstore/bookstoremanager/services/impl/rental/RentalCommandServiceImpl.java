@@ -46,6 +46,7 @@ public class RentalCommandServiceImpl implements RentalCommandService {
         rentalValidations.validateCreateRental(rentalInputCreate, book, datenow);
         RentalEntity rent = rentalMapper.mapperInputToEntityCreate(rentalInputCreate, book, user);
         book.setAmount(book.getAmount() - 1);
+        book.setActive_rentals(book.getActive_rentals() + 1);
         book.setTotal_leased(book.getTotal_leased() + 1);
         rentalRepository.save(rent);
         bookRepository.save(book);
@@ -58,6 +59,7 @@ public class RentalCommandServiceImpl implements RentalCommandService {
         RentalEntity rent = rentalQueryService.findById(id);
         BookEntity book = rent.getBookEntity();
         book.setAmount(book.getAmount() + 1);
+        book.setActive_rentals(book.getActive_rentals() - 1);
         rent.setReturndate(datenow);
         bookRepository.save(book);
         rentalRepository.save(rent);

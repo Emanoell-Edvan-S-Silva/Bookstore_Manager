@@ -19,7 +19,7 @@ public class BookMapper {
         outputDTO.setAuthor(entity.getAuthor());
         outputDTO.setAmount(entity.getAmount());
         outputDTO.setLaunch(entity.getLaunch());
-        outputDTO.setTotal_leased(entity.getTotal_leased());
+        outputDTO.setActive_rentals(entity.getActive_rentals());
         outputDTO.setPublisher(toPublisherOutput(entity.getPublisher()));
         return outputDTO;
     }

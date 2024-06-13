@@ -29,6 +29,7 @@ public class BookInputCreate {
     private String author;
 
     @NotNull
+    @Min(value = 200, message = "O lançamento deve ser superior ao ano 200 d.c")
     @YearConstraint
     @ApiModelProperty(required = true)
     private Integer launch;

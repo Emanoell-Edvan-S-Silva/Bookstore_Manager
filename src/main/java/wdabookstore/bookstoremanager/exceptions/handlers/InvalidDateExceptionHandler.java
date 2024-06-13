@@ -19,6 +19,6 @@ public class InvalidDateExceptionHandler {
     public ResponseEntity<Object> handleEntityDeleteErrorException(Exception ex, WebRequest request) {
         List<String> objectProblems = Collections.emptyList();
         return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.BAD_REQUEST,
-                ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST, ProblemType.INVALID_DATE_INPUT, ex.getMessage(), objectProblems));
+                ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST, ProblemType.INVALID_DATE_INPUT, "Data invalida", Collections.singletonList(ex.getMessage())));
     }
 }

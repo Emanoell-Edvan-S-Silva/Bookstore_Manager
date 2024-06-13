@@ -43,13 +43,15 @@ public class UserValidationsImpl implements UserValidations {
     }
 
     private void validateEmailExistence(String email) {
-        if (userRepository.existsByEmail(email)) {
+        email = email.trim();
+        if (userRepository.existsByEmailIgnoreCase(email)) {
             throw new ExistingFieldException("Email já existe");
         }
     }
 
     private void validateEmailUniqueness(String email, Long userId) {
-        if (userRepository.existsByEmailAndIdNotAndDeletedFalse(email, userId)) {
+        email = email.trim();
+        if (userRepository.existsByEmailIgnoreCaseAndIdNotAndDeletedFalse(email, userId)) {
             throw new ExistingFieldException("Já existe um usuário com esse e-mail");
         }
     }

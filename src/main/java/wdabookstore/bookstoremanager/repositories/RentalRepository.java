@@ -23,7 +23,7 @@ public interface RentalRepository extends JpaRepository<RentalEntity, Long> {
     @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_rentals WHERE id = :RentalId AND returndate IS NULL AND deleted = false)", nativeQuery = true)
     boolean OutstandingRentalValidation(Long RentalId);
 
-    @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_rentals WHERE user_entity_id = :userId AND book_entity_id = :bookId AND status = 'PENDENTE' AND deleted = false)", nativeQuery = true)
+    @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_rentals WHERE user_entity_id = :userId AND book_entity_id = :bookId AND status = 'PENDENT' AND deleted = false)", nativeQuery = true)
     boolean rentalUserAndBookValidation(Long userId, Long bookId);
 
     @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_rentals r INNER JOIN tb_books b ON r.book_entity_id = b.id WHERE b.publisher_entity_id = :publisherId AND r.returndate IS NULL AND r.deleted = false)", nativeQuery = true)

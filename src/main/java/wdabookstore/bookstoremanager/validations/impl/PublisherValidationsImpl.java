@@ -27,13 +27,13 @@ public class PublisherValidationsImpl implements PublisherValidations {
 
     @Override
     public void validateCreate(PublisherInputCreate publisherInputCreate) {
-        validateNameUniqueness(publisherInputCreate.getName());
+        validateNameUniquenessCreate(publisherInputCreate.getName());
     }
 
     @Override
     public void validateUpdate(PublisherInputUpdate publisherInputUpdate) {
         PublisherEntity existingPublisher = publisherQueryService.findById(publisherInputUpdate.getId());
-        validateNameUniqueness(publisherInputUpdate.getName(), existingPublisher.getId());
+        validateNameUniquenessUpdate(publisherInputUpdate.getName(), existingPublisher.getId());
     }
 
     @Override
@@ -43,14 +43,16 @@ public class PublisherValidationsImpl implements PublisherValidations {
         }
     }
 
-    private void validateNameUniqueness(String name) {
-        if (publisherQueryService.publisherNameExist(name)) {
+    private void validateNameUniquenessCreate(String name) {
+        name = name.trim();
+        if (publisherQueryService.publisherNameExists(name)) {
             throw new ExistingFieldException("Já existe uma editora com esse nome");
         }
     }
 
-    private void validateNameUniqueness(String name, Long publisherId) {
-        if (publisherRepository.existsByNameAndIdNotAndDeletedFalse(name, publisherId)) {
+    private void validateNameUniquenessUpdate(String name, Long publisherId) {
+        name = name.trim();
+        if (publisherRepository.existsByNameIgnoreCaseAndIdNotAndDeletedFalse(name, publisherId)) {
             throw new ExistingFieldException("Já existe uma editora com esse nome");
         }
     }

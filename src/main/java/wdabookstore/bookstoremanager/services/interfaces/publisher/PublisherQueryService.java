@@ -9,5 +9,5 @@ public interface PublisherQueryService {
 
     PublisherEntity findById(Long id);
 
-    boolean publisherNameExist(String name);
+    boolean publisherNameExists(String name);
 }

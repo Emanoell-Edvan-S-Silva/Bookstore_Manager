@@ -32,6 +32,9 @@ public class BookEntity {
     @Column
     private int total_leased;
 
+    @Column
+    private int active_rentals;
+
     @ManyToOne
     @JoinColumn(name = "publisher_entity_id")
     private PublisherEntity publisher;

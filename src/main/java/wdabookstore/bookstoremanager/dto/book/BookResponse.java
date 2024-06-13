@@ -23,7 +23,7 @@ public class BookResponse {
 
     private int amount;
 
-    private int total_leased;
+    private int active_rentals;
 
     private PublisherRelatedAnswer publisher;
 }

@@ -17,8 +17,7 @@ import java.util.List;
 public class DeleteErrorExceptionHandler {
     @ExceptionHandler(DeleteErrorException.class)
     public ResponseEntity<Object> handleEntityDeleteErrorException(Exception ex, WebRequest request) {
-        List<String> objectProblems = Collections.emptyList();
         return ErrorMessageBuilder.buildErrorResponseEntity(HttpStatus.BAD_REQUEST,
-                ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST, ProblemType.RESOURCE_NOT_FOUND, ex.getMessage(), objectProblems));
+                ErrorMessageBuilder.buildProblem(HttpStatus.BAD_REQUEST, ProblemType.RESOURCE_NOT_FOUND, "Ouve um erro ao deletar", Collections.singletonList(ex.getMessage())));
     }
 }

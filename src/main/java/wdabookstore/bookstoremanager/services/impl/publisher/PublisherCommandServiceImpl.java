@@ -48,7 +48,6 @@ public class PublisherCommandServiceImpl implements PublisherCommandService {
         publisherValidations.validateUpdate(request);
         PublisherEntity publisher = publisherMapper.mapperInputToEntityUpdate(request);
         publisherRepository.save(publisher);
-        publisherMapper.mapperEntityToOutput(publisher);
     }
 
     @Override

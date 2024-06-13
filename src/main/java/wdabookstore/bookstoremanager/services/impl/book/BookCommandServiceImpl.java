@@ -48,7 +48,10 @@ public class BookCommandServiceImpl implements BookCommandService {
     public void update(@Valid BookInputUpdate bookInputUpdate) {
         bookValidations.validateUpdate(bookInputUpdate);
         PublisherEntity publisher = bookQueryService.findPublisher(bookInputUpdate.getPublisherId());
+        BookEntity bookEntity = bookQueryService.findById(bookInputUpdate.getId());
         BookEntity book = bookMapper.mapperInputToEntityUpdate(bookInputUpdate, publisher);
+        book.setTotal_leased(bookEntity.getTotal_leased());
+        book.setActive_rentals(bookEntity.getActive_rentals());
         bookRepository.save(book);
     }
 

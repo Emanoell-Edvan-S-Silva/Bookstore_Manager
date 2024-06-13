@@ -17,15 +17,13 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 
     List<BookEntity> findByAmountGreaterThanAndDeletedIsFalse(int amount);
 
-    @Query(value = "SELECT * FROM tb_books ORDER BY total_leased DESC LIMIT 4", nativeQuery = true)
+    @Query(value = "SELECT * FROM tb_books WHERE deleted = false ORDER BY total_leased DESC LIMIT 4", nativeQuery = true)
     List<BookEntity> findTop4MostLeasedBooks();
 
-    @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_books WHERE name = :name AND publisher_entity_id = :publisherId AND deleted = false)", nativeQuery = true)
-    boolean existsByNameAndPublisherEntityId(String name, Long publisherId);
+    @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_books WHERE LOWER(name) = LOWER(:name) AND publisher_entity_id = :publisherId AND deleted = false)", nativeQuery = true)
+    boolean existsByNameIgnoreCaseAndPublisherEntityId(String name, Long publisherId);
 
-    @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_books WHERE name = :name AND publisher_entity_id = :publisherId AND id != :id AND deleted = false)", nativeQuery = true)
-    boolean existsByNameAndPublisherEntityIdAndIdNot(String name, Long publisherId, Long id);
+    @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_books WHERE LOWER(name) = LOWER(:name) AND publisher_entity_id = :publisherId AND id != :id AND deleted = false)", nativeQuery = true)
+    boolean existsByNameIgnoreCaseAndPublisherEntityIdAndIdNot(String name, Long publisherId, Long id);
 
-    @Query(value = "SELECT EXISTS (SELECT 1 FROM tb_books WHERE id = :BookId AND amount > :newAmount AND deleted = false)", nativeQuery = true)
-    boolean existsByIdAndAmountGreaterThan(Long BookId, Integer newAmount);
 }

@@ -9,9 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface PublisherRepository extends JpaRepository<PublisherEntity, Long> {
-    boolean existsByNameAndDeletedFalse(String Name);
+    boolean existsByNameIgnoreCaseAndDeletedFalse(String Name);
 
-    boolean existsByNameAndIdNotAndDeletedFalse(String name, Long publisherId);
+    boolean existsByNameIgnoreCaseAndIdNotAndDeletedFalse(String name, Long publisherId);
 
     Optional<PublisherEntity> findByIdAndDeletedFalse(Long id);
 
